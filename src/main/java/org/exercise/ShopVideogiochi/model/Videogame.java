@@ -19,6 +19,8 @@ public class Videogame {
     private Integer price;
 
 
+
+
     public Integer getId() {
         return id;
     }
