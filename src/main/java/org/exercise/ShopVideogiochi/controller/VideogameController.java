@@ -1,5 +1,6 @@
 package org.exercise.ShopVideogiochi.controller;
 
+import jakarta.validation.Valid;
 import org.exercise.ShopVideogiochi.model.Videogame;
 import org.exercise.ShopVideogiochi.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,7 @@ public class VideogameController {
     }
 
     @PostMapping("/create")
-    public String doCreate(@ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
+    public String doCreate(@Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
         // if bindingResult
         if (bindingResult.hasErrors()) {
             return "form";
@@ -76,7 +77,7 @@ public class VideogameController {
     }
 
     @PostMapping("/edit/{id}")
-    public String doEdit(@PathVariable("id") Integer id, @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
+    public String doEdit(@PathVariable("id") Integer id, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "form";
         }

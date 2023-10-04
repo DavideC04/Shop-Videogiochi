@@ -1,13 +1,118 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Crea/Modifica i Videogiochi</title>
 </head>
+
 <body>
+
+<div class="container m-5 p-3 bg-light">
+
+    <h1 class="mx-5 text-center"
+        th:text="${game.id != null ? 'MODIFICA' : 'AGGIUNGI UN NUOVO VIDEOGIOCO'}"></h1>
+
+
+    <form class="row g-3"
+          id="game-form"
+          th:object="${game}"
+          th:action="${game.id != null} ? @{/edit/{id}(id=${game.id})} : @{/create}"
+          method="post"
+    >
+
+        <div class="col-md-4">
+            <label for="image" class="form-label">URL</label>
+            <input type="text" class="form-control" id="image" required th:field="*{photo}" th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('photo')}">
+                <ul>
+
+                    <li th:each="err : ${#fields.errors('photo')}" th:text="${err}">
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label for="title" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="title" required th:field="*{title}" th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}">
+                <ul>
+
+                    <li th:each="err : ${#fields.errors('title')}" th:text="${err}">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="editor" class="form-label">Editore</label>
+            <input type="text" class="form-control" id="editor" required th:field="*{editor}"
+                   th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('editor')}">
+                <ul>
+
+                    <li th:each="err : ${#fields.errors('editor')}" th:text="${err}">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label for="description" class="form-label">Descrizione</label>
+            <div class="form-floating">
+          <textarea class="form-control" id="description" required style="height: 100px" th:field="*{description}"
+                    th:errorClass="is-invalid">
+          </textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('editor')}">
+                    <ul>
+
+                        <li th:each="err : ${#fields.errors('editor')}" th:text="${err}">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <label for="description" class="form-label">Prezzo</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">€</span>
+                <span class="input-group-text">0.00</span>
+                <input type="text" class="form-control" id="price" required th:field="*{price}"
+                       th:errorClass="is-invalid"
+                >
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
+                    <ul>
+
+                        <li th:each="err : ${#fields.errors('price')}" th:text="${err}">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 text-center">
+            <button class="btn btn-primary" type="submit">SALVA</button>
+        </div>
+        <div class="col-12 text-center">
+            <a class="btn btn-primary" th:href="@{/}">CANCELLA</a>
+        </div>
+
+
+    </form>
+
+
+</div>
 
 </body>
 </html>
