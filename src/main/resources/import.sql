@@ -1,0 +1,1 @@
+INSERT INTO videogame (photo, title, editor, description, price) VALUES ('https://preview.redd.it/hbzsvtal3ca71.jpg?width=1080&crop=smart&auto=webp&s=96167222df2ac17a99da08dd82b54a05ff674040','GTA_VI', 'Rockstar', 'Description test', 80);
