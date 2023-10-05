@@ -1,6 +1,11 @@
 package org.exercise.ShopVideogiochi.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "games")
@@ -10,11 +15,16 @@ public class Videogame {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
+    @URL(message = "Deve essere inserito un URL!")
     private String photo;
+    @NotBlank(message = "Il titolo non può essere vuoto!")
     private String title;
+    @NotBlank(message = "L'editore non può essere vuoto!")
     private String editor;
     private String description;
-    private Integer price;
+    @NotBlank(message = "Il prezzo non può essere vuoto!")
+    @Min(1)
+    private BigDecimal price;
 
 
 
@@ -58,16 +68,16 @@ public class Videogame {
         this.description = description;
     }
 
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
 
-    public Videogame(Integer id, String photo, String title, String editor, String description, Integer price) {
+    public Videogame(Integer id, String photo, String title, String editor, String description, BigDecimal price) {
         this.id = id;
         this.photo = photo;
         this.title = title;
