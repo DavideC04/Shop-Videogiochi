@@ -10,19 +10,23 @@
 
     <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
-            <div th:each="g : ${game}" class="carousel-item active">
+            <div th:each="g, status : ${game}" class="carousel-item"
+                 th:classappend="${status.index == 0} ? 'active' : ''">
+                >
                 <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
                 <h5 class="card-title" th:text="${g.title}"></h5>
                 <button type="submit" class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">Dettagli</button>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+        <button class="carousel-control-prev btn-dark" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+            <span>Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+        <button class="carousel-control-next btn-dark" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="false"></span>
+            <span>Next</span>
         </button>
     </div>
 
