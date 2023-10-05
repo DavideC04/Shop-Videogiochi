@@ -3,6 +3,7 @@ package org.exercise.ShopVideogiochi.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.URL;
 
 import java.math.BigDecimal;
@@ -22,7 +23,7 @@ public class Videogame {
     @NotBlank(message = "L'editore non può essere vuoto!")
     private String editor;
     private String description;
-    @NotBlank(message = "Il prezzo non può essere vuoto!")
+    @NotNull(message = "Il prezzo non può essere inferiore o uguale a 0!")
     @Min(1)
     private BigDecimal price;
 
