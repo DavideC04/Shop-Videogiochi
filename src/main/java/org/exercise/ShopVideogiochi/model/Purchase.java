@@ -23,6 +23,16 @@ public class Purchase {
     @Min(1)
     private Integer quantity;
 
+    @ManyToOne
+    private Videogame videogame;
+
+    public Videogame getVideogame() {
+        return videogame;
+    }
+
+    public void setVideogame(Videogame videogame) {
+        this.videogame = videogame;
+    }
 
     public Integer getId() {
         return id;

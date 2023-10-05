@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.URL;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "games")
@@ -27,7 +28,17 @@ public class Videogame {
     @Min(1)
     private BigDecimal price;
 
+    @OneToMany(mappedBy = "videogame")
+    private List<Purchase> purchases;
 
+
+    public List<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public void setPurchases(List<Purchase> purchases) {
+        this.purchases = purchases;
+    }
 
     public Integer getId() {
         return id;
