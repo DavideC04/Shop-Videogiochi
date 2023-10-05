@@ -24,7 +24,16 @@
                     <p class="card-text" th:text="${game.editor}"></p>
                     <p class="card-text" th:text="${game.description}"></p>
                     <p class="card-text" th:text="|Prezzo: €${game.price}|"></p>
-                    <a class="btn btn-black border-black mt-5" th:href="@{/}"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <div class="d-flex align-items-center">
+                        <a class="btn btn-black border-black mx-2 " th:href="@{/}"><i
+                                class="fa-solid fa-cart-shopping"></i></a>
+                        <a th:href="@{/edit/{id} (id=${game.id})}" class="btn btn-primary mx-2"><i
+                                class="fa-solid fa-pen-to-square"></i></a>
+                        <form th:action="@{/delete/{id}(id=${game.id})}" method="post">
+                            <button type="submit" class="btn btn-danger mx-2"><i
+                                    class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

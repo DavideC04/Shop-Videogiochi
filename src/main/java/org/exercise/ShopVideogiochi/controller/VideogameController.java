@@ -82,7 +82,7 @@ public class VideogameController {
             return "form";
         }
         videogameRepository.save(gameForm);
-        return "redirect:/";
+        return "details";
     }
 
 
