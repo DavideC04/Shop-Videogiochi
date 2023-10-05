@@ -1,54 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-          crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous" defer></script>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <title>Game Details</title>
-</head>
+
+<head th:replace="fragments/head :: head('dettagli videogioco')"></head>
 
 <body class="bg-light">
-<!-- Navbar fragment qui -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" th:href="@{/}">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav"></div>
-    </div>
-</nav>
 
-<div class="container mt-4 mt-lg-5 d-flex flex-column justify-content-center align-items-center">
-    <h1 class="text-center mb-5">Game Details</h1>
-    <div class="row justify-content-center align-items-start">
-        <!-- Image container -->
-        <div class="col-lg-4">
-            <img alt="game-img" class="img-fluid border border-secondary" th:src="${game.photo}" >
+<nav th:replace="fragments/navbar :: navbar"></nav>
+
+<div class="container bg-light">
+    <h1 class="text-center my-5">Dettagli Videogioco</h1>
+    <div class="row">
+        <!-- Box dell'immagine -->
+        <div class="col-md-6 d-flex">
+            <div class="card w-100 h-100 bg-white border-black">
+                <img alt="game-img" class="img-fluid h-100" th:src="${game.photo}">
+            </div>
         </div>
-        <!-- Info container -->
-        <div class="col-lg-8">
-            <div class="card">
+        <!-- Box dei dettagli -->
+        <div class="col-md-6 d-flex" style="height: 400px;">
+            <div class="card w-100 border-black">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${game.title}"></h5>
-                    <h5 class="card-title"> </h5>
                     <p class="card-text" th:text="${game.editor}"></p>
                     <p class="card-text" th:text="${game.description}"></p>
-                    <p class="card-text" th:text="|Price: €${game.price}|"></p>
-                    <!-- Button per acquistare -->
-                    <a class="btn btn-secondary" th:href="@{/}">Buy</a>
+                    <p class="card-text" th:text="|Prezzo: €${game.price}|"></p>
+                    <a class="btn btn-black border-black mt-5" th:href="@{/}"><i class="fa-solid fa-cart-shopping"></i></a>
                 </div>
             </div>
         </div>

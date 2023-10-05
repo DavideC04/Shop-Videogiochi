@@ -8,12 +8,12 @@
 <div class="container mt-4 mt-lg-5 text-center">
     <h1 class="text-center my-3">TUTTI I GIOCHI</h1>
 
-    <div id="carouselExample" class="carousel slide">
+    <div id="carouselExample" class="carousel slide p-5">
         <div class="carousel-inner">
             <div th:each="g, status : ${game}" class="carousel-item"
                  th:classappend="${status.index == 0} ? 'active' : ''">
                 <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
-                <h5 class="card-title" th:text="${g.title}"></h5>
+                <p></p>
                 <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
                     Dettagli
                 </a>
@@ -31,9 +31,116 @@
     </div>
 
     <!---aggiungere th:if per dividere la lista giochi in base alla console-->
-    <h1 class="text-center my-3">PLAYSTATION</h1>
-    <h1 class="text-center my-3">NINTENDO SWITCH</h1>
-    <h1 class="text-center my-3">XBOX</h1>
+    <!---tra i controller inserisco tutta la lista di videogiochi senza differenziarli solo a scopo di test--->
+    <h1 class="text-center mt-5">PLAYSTATION</h1>
+    <div class="row">
+        <div class="col-4">
+            <img src="ps5-left.jpeg">
+        </div>
+
+        <div class="col-4 p-5">
+            <div id="carouselPlay" class="carousel slide">
+                <div class="carousel-inner">
+                    <div th:each="g, status : ${game}" class="carousel-item"
+                         th:classappend="${status.index == 0} ? 'active' : ''">
+                        <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
+                        <p></p>
+                        <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
+                            Dettagli
+                        </a>
+                    </div>
+                </div>
+                <button class="carousel-control-prev opacity-100" type="button" data-bs-target="#carouselPlay"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next opacity-100" type="button" data-bs-target="#carouselPlay"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="col-4">
+            <img src="ps5-right.jpeg">
+        </div>
+    </div>
+
+    <h1 class="text-center mt-5">NINTENDO SWITCH</h1>
+
+    <div class="row">
+        <div class="col-4">
+            <img src="switch-left.jpg">
+        </div>
+
+        <div class="col-4 p-5">
+            <div id="carouselSwitch" class="carousel slide">
+                <div class="carousel-inner">
+                    <div th:each="g, status : ${game}" class="carousel-item"
+                         th:classappend="${status.index == 0} ? 'active' : ''">
+                        <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
+                        <p></p>
+                        <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
+                            Dettagli
+                        </a>
+                    </div>
+                </div>
+                <button class="carousel-control-prev opacity-100" type="button" data-bs-target="#carouselSwitch"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next opacity-100" type="button" data-bs-target="#carouselSwitch"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="col-4">
+            <img src="switch-right.jpg">
+        </div>
+    </div>
+
+
+    <h1 class="text-center mt-5">XBOX</h1>
+
+    <div class="row">
+        <div class="col-4">
+            <img src="xbox-left.jpeg">
+        </div>
+
+        <div class="col-4 p-5">
+            <div id="carouselX" class="carousel slide">
+                <div class="carousel-inner">
+                    <div th:each="g, status : ${game}" class="carousel-item"
+                         th:classappend="${status.index == 0} ? 'active' : ''">
+                        <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
+                        <p></p>
+                        <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
+                            Dettagli
+                        </a>
+                    </div>
+                </div>
+                <button class="carousel-control-prev opacity-100" type="button" data-bs-target="#carouselX"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next opacity-100" type="button" data-bs-target="#carouselX"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="col-4">
+            <img src="xbox-right.jpeg">
+        </div>
+    </div>
+
+
 </div>
 
 </body>
