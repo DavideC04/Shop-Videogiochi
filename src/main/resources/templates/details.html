@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/head :: head('dettagli videogioco')">
+<head th:replace="fragments/head :: head('dettagli videogioco')"></head>
 
 <body class="bg-light">
-<!-- Navbar fragment qui -->
+
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
-<div class="container mt-4 mt-lg-5 d-flex flex-column justify-content-center align-items-center">
-    <h1 class="text-center mb-5">Game Details</h1>
-    <div class="row justify-content-center align-items-start">
-        <!-- Image container -->
-        <div class="col-lg-4">
-            <img alt="game-img" class="img-fluid border border-secondary" th:src="${game.photo}">
+<div class="container bg-light">
+    <h1 class="text-center my-5">Dettagli Videogioco</h1>
+    <div class="row">
+        <!-- Box dell'immagine -->
+        <div class="col-md-6 d-flex">
+            <div class="card w-100 h-100 bg-white border-black">
+                <img alt="game-img" class="img-fluid h-100" th:src="${game.photo}">
+            </div>
         </div>
-        <!-- Info container -->
-        <div class="col-lg-8">
-            <div class="card">
+        <!-- Box dei dettagli -->
+        <div class="col-md-6 d-flex" style="height: 400px;">
+            <div class="card w-100 border-black">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${game.title}"></h5>
-                    <h5 class="card-title"></h5>
                     <p class="card-text" th:text="${game.editor}"></p>
                     <p class="card-text" th:text="${game.description}"></p>
-                    <p class="card-text" th:text="|Price: €${game.price}|"></p>
-                    <!-- Button per acquistare -->
-                    <a class="btn btn-secondary" th:href="@{/}">Buy</a>
+                    <p class="card-text" th:text="|Prezzo: €${game.price}|"></p>
+                    <a class="btn btn-black border-black mt-5" th:href="@{/}"><i class="fa-solid fa-cart-shopping"></i></a>
                 </div>
             </div>
         </div>
