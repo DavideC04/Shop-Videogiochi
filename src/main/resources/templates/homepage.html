@@ -5,5 +5,50 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
+<div class="container mt-4 mt-lg-5 d-flex flex-column justify-content-center align-items-center">
+    <h1 class="text-center my-3">TUTTI I GIOCHI</h1>
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+
+                <div class="row justify-content-center align-items-start">
+                    <div th:each="g: ${game}">
+                        <div class="col-lg-4">
+                            <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${g.title}"></h5>
+                                    <h5 class="card-title"></h5>
+                                    <p class="card-text" th:text="${g.editor}"></p>
+                                    <p class="card-text" th:text="${g.description}"></p>
+                                    <p class="card-text" th:text="|Price: €${g.price}|"></p>
+                                    <a class="btn btn-secondary" th:href="@{/}">Acquista</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Precedente</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Successivo</span>
+            </button>
+        </div>
+    </div>
+
+    <!---aggiungere th:if per dividere la lista giochi in base alla console-->
+    <h1 class="text-center my-3">PLAYSTATION</h1>
+    <h1 class="text-center my-3">NINTENDO SWITCH</h1>
+    <h1 class="text-center my-3">XBOX</h1>
+</div>
+
 </body>
 </html>

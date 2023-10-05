@@ -8,10 +8,10 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
-<div class="container m-5 p-3 bg-light">
+<div class="container mt-4 mt-lg-5 bg-light">
 
     <h1 class="mx-5 text-center"
-        th:text="${game.id != null ? 'MODIFICA' : 'AGGIUNGI UN NUOVO VIDEOGIOCO'}"></h1>
+        th:text="${game.id != null ? 'MODIFICA' : 'AGGIUNGI'}"></h1>
 
 
     <form class="row g-3"
