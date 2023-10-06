@@ -46,7 +46,7 @@ public class VideogameController {
     // metodo create
     @GetMapping("/create")
     public String create(Model model) {
-        // modelAttribute
+
         model.addAttribute("game", new Videogame());
 
         return "form";

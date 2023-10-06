@@ -56,6 +56,18 @@
                 </ul>
             </div>
         </div>
+        <div class="col-md-4">
+            <label for="genre" class="form-label">Genere</label>
+            <input type="text" class="form-control" id="genre" required th:field="*{genre}"
+                   th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('genre')}">
+                <ul>
+
+                    <li th:each="err : ${#fields.errors('genre')}" th:text="${err}">
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div class="col-md-12">
             <label for="description" class="form-label">Descrizione</label>
             <div class="form-floating">
@@ -69,6 +81,24 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <label for="console" class="form-label">Console</label>
+            <select id="console" class="form-select" th:field="*{console}" th:errorClass="is-invalid">
+                <option value="" selected>---Seleziona tipo di console---</option>
+                <option value="1">PlayStation 5</option>
+                <option value="2">PlayStation 4</option>
+                <option value="3">Nintendo Switch</option>
+                <option value="4">Xbox</option>
+            </select>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('console')}">
+                <ul>
+
+                    <li th:each="err : ${#fields.errors('console')}" th:text="${err}">
+                    </li>
+                </ul>
             </div>
         </div>
 
