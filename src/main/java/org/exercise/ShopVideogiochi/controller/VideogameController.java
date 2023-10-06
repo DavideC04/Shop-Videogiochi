@@ -93,4 +93,10 @@ public class VideogameController {
         return "redirect:/";
     }
 
+    //Controller Omar  (NON TOCCARE -> IN FASE DI SVILUPPO)
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "login";
+    }
+
 }
