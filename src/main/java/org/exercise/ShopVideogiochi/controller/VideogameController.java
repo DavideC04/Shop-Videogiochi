@@ -93,4 +93,12 @@ public class VideogameController {
         return "redirect:/";
     }
 
+    //Controller Omar  (NON TOCCARE -> IN FASE DI SVILUPPO)
+    @GetMapping("/login")
+    public String login(Model model) {
+        List<Videogame> videogameList = videogameRepository.findAll();
+        model.addAttribute("game", videogameList);
+        return "login";
+    }
+
 }
