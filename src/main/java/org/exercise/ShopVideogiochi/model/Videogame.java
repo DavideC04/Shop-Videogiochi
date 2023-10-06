@@ -30,6 +30,10 @@ public class Videogame {
 
     @OneToMany(mappedBy = "videogame")
     private List<Purchase> purchases;
+    @NotBlank(message = "Inserisci la tipologia di videogioco")
+    private String genre;
+    @NotBlank(message = "Inserisci la tipologia di console")
+    private String console;
 
 
     public List<Purchase> getPurchases() {
@@ -88,6 +92,21 @@ public class Videogame {
         this.price = price;
     }
 
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getConsole() {
+        return console;
+    }
+
+    public void setConsole(String console) {
+        this.console = console;
+    }
 
     public Videogame(Integer id, String photo, String title, String editor, String description, BigDecimal price) {
         this.id = id;
@@ -98,7 +117,7 @@ public class Videogame {
         this.price = price;
     }
 
-    public Videogame(){
+    public Videogame() {
 
     }
 }
