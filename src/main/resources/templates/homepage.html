@@ -8,10 +8,10 @@
 <div class="container mt-4 mt-lg-5 text-center">
     <h1 class="text-center my-3">TUTTI I GIOCHI</h1>
 
-    <div id="carouselExample" class="carousel slide p-5">
+    <div class="carousel slide p-5" id="carouselExample">
         <div class="carousel-inner">
-            <div th:each="g, status : ${game}" class="carousel-item"
-                 th:classappend="${status.index == 0} ? 'active' : ''">
+            <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
+                 th:each="g, status : ${game}">
                 <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
                 <p></p>
                 <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
@@ -19,12 +19,12 @@
                 </a>
             </div>
         </div>
-        <button class="carousel-control-prev opacity-100 bg-dark" type="button" data-bs-target="#carouselExample"
-                data-bs-slide="prev">
+        <button class="carousel-control-prev opacity-100 bg-dark" data-bs-slide="prev" data-bs-target="#carouselExample"
+                type="button">
             <span class="carousel-control-prev-icon"></span>
         </button>
-        <button class="carousel-control-next opacity-100 bg-dark " type="button" data-bs-target="#carouselExample"
-                data-bs-slide="next">
+        <button class="carousel-control-next opacity-100 bg-dark " data-bs-slide="next" data-bs-target="#carouselExample"
+                type="button">
             <span class="carousel-control-next-icon"></span>
         </button>
 
@@ -39,10 +39,10 @@
         </div>
 
         <div class="col-4 p-5">
-            <div id="carouselPlay" class="carousel slide">
+            <div class="carousel slide" id="carouselPlay">
                 <div class="carousel-inner">
-                    <div th:each="g, status : ${game}" class="carousel-item"
-                         th:classappend="${status.index == 0} ? 'active' : ''">
+                    <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
+                         th:each="g, status : ${game}">
                         <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
                         <p></p>
                         <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
@@ -50,12 +50,12 @@
                         </a>
                     </div>
                 </div>
-                <button class="carousel-control-prev opacity-100" type="button" data-bs-target="#carouselPlay"
-                        data-bs-slide="prev">
+                <button class="carousel-control-prev opacity-100" data-bs-slide="prev" data-bs-target="#carouselPlay"
+                        type="button">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
-                <button class="carousel-control-next opacity-100" type="button" data-bs-target="#carouselPlay"
-                        data-bs-slide="next">
+                <button class="carousel-control-next opacity-100" data-bs-slide="next" data-bs-target="#carouselPlay"
+                        type="button">
                     <span class="carousel-control-next-icon"></span>
                 </button>
 
@@ -75,10 +75,10 @@
         </div>
 
         <div class="col-4 p-5">
-            <div id="carouselSwitch" class="carousel slide">
+            <div class="carousel slide" id="carouselSwitch">
                 <div class="carousel-inner">
-                    <div th:each="g, status : ${game}" class="carousel-item"
-                         th:classappend="${status.index == 0} ? 'active' : ''">
+                    <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
+                         th:each="g, status : ${game}">
                         <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
                         <p></p>
                         <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
@@ -86,12 +86,12 @@
                         </a>
                     </div>
                 </div>
-                <button class="carousel-control-prev opacity-100" type="button" data-bs-target="#carouselSwitch"
-                        data-bs-slide="prev">
+                <button class="carousel-control-prev opacity-100" data-bs-slide="prev" data-bs-target="#carouselSwitch"
+                        type="button">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
-                <button class="carousel-control-next opacity-100" type="button" data-bs-target="#carouselSwitch"
-                        data-bs-slide="next">
+                <button class="carousel-control-next opacity-100" data-bs-slide="next" data-bs-target="#carouselSwitch"
+                        type="button">
                     <span class="carousel-control-next-icon"></span>
                 </button>
 
@@ -112,10 +112,10 @@
         </div>
 
         <div class="col-4 p-5">
-            <div id="carouselX" class="carousel slide">
+            <div class="carousel slide" id="carouselX">
                 <div class="carousel-inner">
-                    <div th:each="g, status : ${game}" class="carousel-item"
-                         th:classappend="${status.index == 0} ? 'active' : ''">
+                    <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
+                         th:each="g, status : ${game}">
                         <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
                         <p></p>
                         <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
@@ -123,12 +123,12 @@
                         </a>
                     </div>
                 </div>
-                <button class="carousel-control-prev opacity-100" type="button" data-bs-target="#carouselX"
-                        data-bs-slide="prev">
+                <button class="carousel-control-prev opacity-100" data-bs-slide="prev" data-bs-target="#carouselX"
+                        type="button">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
-                <button class="carousel-control-next opacity-100" type="button" data-bs-target="#carouselX"
-                        data-bs-slide="next">
+                <button class="carousel-control-next opacity-100" data-bs-slide="next" data-bs-target="#carouselX"
+                        type="button">
                     <span class="carousel-control-next-icon"></span>
                 </button>
 
@@ -142,6 +142,8 @@
 
 
 </div>
+
+<footer th:replace="fragments/footer"></footer>
 
 </body>
 </html>
