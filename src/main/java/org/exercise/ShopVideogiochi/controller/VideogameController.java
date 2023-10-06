@@ -60,12 +60,12 @@ public class VideogameController {
     }
 
     @PostMapping("/create")
-    public String doCreate(@Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
+    public String doCreate(Model model, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
 
 
         // if bindingResult
         if (bindingResult.hasErrors()) {
-            List<Console> consoleList = consoleRepository.findAll();
+            model.addAttribute("console", consoleRepository.findAll());
             return "form";
         }
         videogameRepository.save(gameForm);
@@ -88,9 +88,10 @@ public class VideogameController {
     }
 
     @PostMapping("/edit/{id}")
-    public String doEdit(@PathVariable("id") Integer id, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
+    public String doEdit(Model model, @PathVariable("id") Integer id, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            List<Console> consoleList = consoleRepository.findAll();
+
+            model.addAttribute("console", consoleRepository.findAll());
             return "form";
         }
         videogameRepository.save(gameForm);
