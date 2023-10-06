@@ -17,12 +17,14 @@
             </div>
         </div>
         <!-- Box dei dettagli -->
-        <div class="col-md-6 d-flex" style="height: 400px;">
+        <div class="col-md-6 d-flex" style="height: 42px;">
             <div class="card w-100 border-black">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${game.title}"></h5>
                     <p class="card-text" th:text="${game.editor}"></p>
+                    <p class="card-text" th:text="${game.genre}"></p>
                     <p class="card-text" th:text="${game.description}"></p>
+                    <p class="card-text" th:text="${game.console}"></p>
                     <p class="card-text" th:text="|Prezzo: €${game.price}|"></p>
                     <div class="d-flex align-items-center">
                         <a class="btn btn-black border-black mx-2 " th:href="@{/}"><i
