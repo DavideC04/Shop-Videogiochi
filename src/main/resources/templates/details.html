@@ -24,8 +24,8 @@
                     <p class="card-text" th:text="${game.editor}"></p>
                     <p class="card-text" th:text="${game.description}"></p>
                     <p class="card-text" th:text="|Prezzo: €${game.price}|"></p>
-                    <div class="d-flex align-items-center">
-                        <a class="btn btn-black border-black mx-2 " th:href="@{/}"><i
+                    <div class="d-flex align-items-center mb-2 ">
+                        <a class="btn btn-black border-black mx-2 " th:href="@{/purchase}"><i
                                 class="fa-solid fa-cart-shopping"></i></a>
                         <a th:href="@{/edit/{id} (id=${game.id})}" class="btn btn-primary mx-2"><i
                                 class="fa-solid fa-pen-to-square"></i></a>
