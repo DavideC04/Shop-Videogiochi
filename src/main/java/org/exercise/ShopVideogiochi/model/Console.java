@@ -14,7 +14,6 @@ public class Console {
     @NotBlank(message = "inserisci il nome della console.")
     private String console;
 
-
     public Integer getId() {
         return id;
     }
