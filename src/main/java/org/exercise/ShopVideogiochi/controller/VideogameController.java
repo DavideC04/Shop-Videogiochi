@@ -1,7 +1,9 @@
 package org.exercise.ShopVideogiochi.controller;
 
 import jakarta.validation.Valid;
+import org.exercise.ShopVideogiochi.model.Console;
 import org.exercise.ShopVideogiochi.model.Videogame;
+import org.exercise.ShopVideogiochi.repository.ConsoleRepository;
 import org.exercise.ShopVideogiochi.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,9 @@ public class VideogameController {
 
     @Autowired
     private VideogameRepository videogameRepository;
+
+    @Autowired
+    private ConsoleRepository consoleRepository;
 
     @GetMapping
     public String index(Model model) {
@@ -47,6 +52,8 @@ public class VideogameController {
     @GetMapping("/create")
     public String create(Model model) {
 
+        List<Console> consoleList = consoleRepository.findAll();
+        model.addAttribute("console", consoleList);
         model.addAttribute("game", new Videogame());
 
         return "form";
@@ -54,8 +61,11 @@ public class VideogameController {
 
     @PostMapping("/create")
     public String doCreate(@Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
+
+
         // if bindingResult
         if (bindingResult.hasErrors()) {
+            List<Console> consoleList = consoleRepository.findAll();
             return "form";
         }
         videogameRepository.save(gameForm);
@@ -68,6 +78,7 @@ public class VideogameController {
     public String edit(@PathVariable("id") Integer id, Model model) {
         Optional<Videogame> result = videogameRepository.findById(id);
         if (result.isPresent()) {
+            model.addAttribute("console", consoleRepository.findAll());
             model.addAttribute("game", result.get());
             return "form";
         } else {
@@ -79,6 +90,7 @@ public class VideogameController {
     @PostMapping("/edit/{id}")
     public String doEdit(@PathVariable("id") Integer id, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            List<Console> consoleList = consoleRepository.findAll();
             return "form";
         }
         videogameRepository.save(gameForm);

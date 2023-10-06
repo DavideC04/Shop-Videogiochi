@@ -28,12 +28,14 @@ public class Videogame {
     @Min(1)
     private BigDecimal price;
 
+    @NotBlank(message = "Inserisci il genere")
+    private String genre;
+
     @OneToMany(mappedBy = "videogame")
     private List<Purchase> purchases;
-    @NotBlank(message = "Inserisci la tipologia di videogioco")
-    private String genre;
-    @NotBlank(message = "Inserisci la tipologia di console")
-    private String console;
+
+    @ManyToMany
+    private List<Console> consoleList;
 
 
     public List<Purchase> getPurchases() {
@@ -100,12 +102,12 @@ public class Videogame {
         this.genre = genre;
     }
 
-    public String getConsole() {
-        return console;
+    public List<Console> getConsoleList() {
+        return consoleList;
     }
 
-    public void setConsole(String console) {
-        this.console = console;
+    public void setConsoleList(List<Console> consoleList) {
+        this.consoleList = consoleList;
     }
 
     public Videogame(Integer id, String photo, String title, String editor, String description, BigDecimal price) {
