@@ -95,7 +95,7 @@ public class VideogameController {
             return "form";
         }
         videogameRepository.save(gameForm);
-        return "details";
+        return "redirect:/admin";
     }
 
 
@@ -103,7 +103,7 @@ public class VideogameController {
     @PostMapping("delete/{id}")
     public String delete(@PathVariable("id") Integer id) {
         videogameRepository.deleteById(id);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     //Controller Omar  (NON TOCCARE -> IN FASE DI SVILUPPO)
@@ -112,4 +112,12 @@ public class VideogameController {
         return "login";
     }
 
+
+    // controller admin
+    @GetMapping("/admin")
+    public String admin(Model model) {
+        List<Videogame> videogameList = videogameRepository.findAll();
+        model.addAttribute("game", videogameList);
+        return "admin";
+    }
 }
