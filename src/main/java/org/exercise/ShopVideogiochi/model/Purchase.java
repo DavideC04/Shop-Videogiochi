@@ -3,11 +3,8 @@ package org.exercise.ShopVideogiochi.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "purchase")
@@ -25,6 +22,8 @@ public class Purchase {
 
     @ManyToOne
     private Videogame videogame;
+    @ManyToOne
+    private User user;
 
     public Videogame getVideogame() {
         return videogame;
@@ -58,6 +57,13 @@ public class Purchase {
         this.quantity = quantity;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Purchase(Integer id, LocalDateTime dateTime, @NotNull Integer quantity) {
         this.id = id;
@@ -65,7 +71,7 @@ public class Purchase {
         this.quantity = quantity;
     }
 
-    public Purchase(){
+    public Purchase() {
 
     }
 }

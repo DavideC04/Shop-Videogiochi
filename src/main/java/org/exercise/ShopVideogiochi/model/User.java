@@ -1,12 +1,10 @@
 package org.exercise.ShopVideogiochi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class User {
@@ -22,6 +20,9 @@ public class User {
     @NotNull
     private String password;
     private LocalDate birthday;
+    private String address;
+    @OneToMany(mappedBy = "user")
+    private List<Purchase> purchases;
 
 
     public Integer getId() {
@@ -80,6 +81,21 @@ public class User {
         this.birthday = birthday;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public void setPurchases(List<Purchase> purchases) {
+        this.purchases = purchases;
+    }
 
     public User(Integer id, String name, String lastName, String userName, @NotNull String email, @NotNull String password, LocalDate birthday) {
         this.id = id;
@@ -91,7 +107,7 @@ public class User {
         this.birthday = birthday;
     }
 
-    public User (){
+    public User() {
 
     }
 }
