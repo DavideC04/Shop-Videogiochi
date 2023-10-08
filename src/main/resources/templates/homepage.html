@@ -146,6 +146,35 @@
             </div>
         </div>
 
+        <h1 class="text-center my-3">I PIU' VENDUTI</h1>
+
+        <div class="carousel slide p-5" id="carouselMax">
+            <div class="carousel-inner">
+                <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
+                     th:each="p, status : ${popular}"
+                >
+
+                    <img alt="game-img" class="img-fluid border border-secondary" th:src="${p.photo}">
+                    <p></p>
+                    <a class="btn btn-primary" th:href="@{/show/{id}(id=${p.id})}">
+                        Dettagli
+                    </a>
+
+                </div>
+            </div>
+            <button class="carousel-control-prev opacity-100 bg-dark" data-bs-slide="prev"
+                    data-bs-target="#carouselMax"
+                    type="button">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next opacity-100 bg-dark " data-bs-slide="next"
+                    data-bs-target="#carouselMax"
+                    type="button">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+
+        </div>
+
 
     </div>
 

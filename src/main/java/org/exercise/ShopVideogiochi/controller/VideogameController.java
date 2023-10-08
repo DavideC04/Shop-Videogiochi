@@ -2,8 +2,10 @@ package org.exercise.ShopVideogiochi.controller;
 
 import jakarta.validation.Valid;
 import org.exercise.ShopVideogiochi.model.Console;
+import org.exercise.ShopVideogiochi.model.Purchase;
 import org.exercise.ShopVideogiochi.model.Videogame;
 import org.exercise.ShopVideogiochi.repository.ConsoleRepository;
+import org.exercise.ShopVideogiochi.repository.PurchaseRepository;
 import org.exercise.ShopVideogiochi.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,13 +15,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/")
 public class VideogameController {
 
+    @Autowired
+    private PurchaseRepository purchaseRepository;
     @Autowired
     private VideogameRepository videogameRepository;
 
@@ -29,6 +36,23 @@ public class VideogameController {
     @GetMapping
     public String index(Model model) {
         List<Videogame> videogameList = videogameRepository.findAll();
+        List<Purchase> purchaseList = purchaseRepository.findAll();
+        Set<Videogame> popularGames = new HashSet<>();
+
+        for (Purchase p : purchaseList) {
+
+
+            if (p.getDateTime().getMonth().equals(LocalDateTime.now().getMonth())) {
+                Videogame game = p.getVideogame();
+
+                if (game.getPurchases().size() > 3) {
+                    popularGames.add(game);
+                }
+            }
+
+        }
+
+        model.addAttribute("popular", popularGames);
         model.addAttribute("game", videogameList);
         return "homepage";
     }

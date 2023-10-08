@@ -248,3 +248,6 @@ INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-
 INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 05:12:44", 9, 6, 6);
 INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:20:39", 20, 6, 21);
 INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 05:12:58", 9, 6, 5);
+
+
+
