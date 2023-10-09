@@ -34,7 +34,8 @@ public class Videogame {
     private String genre;
     @NotBlank(message = "Inserisci la tipologia di console")
     private String console;
-
+    @ManyToOne
+    private Supply supply;
 
     public List<Purchase> getPurchases() {
         return purchases;
