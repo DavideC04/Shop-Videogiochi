@@ -54,6 +54,8 @@ public class PurchaseController {
         if (bindingResult.hasErrors()) {
             return "purchase";
         }
+
+
         Purchase acquisto = purchaseRepository.save(form);
         redirectAttributes.addAttribute("id", acquisto.getId());
 

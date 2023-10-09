@@ -37,22 +37,12 @@ public class Videogame {
     @ManyToMany
     private List<Console> consoleList;
 
-    @OneToMany(mappedBy = "videogame")
-    private List<Restock> restocks;
-
-
-    public Videogame(Integer id, String photo, String title, String editor, String description, BigDecimal price) {
-        this.id = id;
-        this.photo = photo;
-        this.title = title;
-        this.editor = editor;
-        this.description = description;
-        this.price = price;
-    }
-
-    public Videogame() {
-
-    }
+    @NotBlank(message = "Inserisci la tipologia di videogioco")
+    private String genre;
+    @NotBlank(message = "Inserisci la tipologia di console")
+    private String console;
+    @ManyToOne
+    private Supply supply;
 
     public List<Purchase> getPurchases() {
         return purchases;
@@ -126,11 +116,18 @@ public class Videogame {
         this.consoleList = consoleList;
     }
 
-    public List<Restock> getRestocks() {
-        return restocks;
+    public Videogame(Integer id, String photo, String title, String editor, String description, BigDecimal price) {
+        this.id = id;
+        this.photo = photo;
+        this.title = title;
+        this.editor = editor;
+        this.description = description;
+        this.price = price;
     }
 
-    public void setRestocks(List<Restock> restocks) {
-        this.restocks = restocks;
+    public Videogame() {
+
     }
+
+
 }
