@@ -42,15 +42,23 @@
 
             <div class="col-4 p-5">
                 <div class="carousel slide" id="carouselPlay">
-                    <div class="carousel-inner">
+                    <div class="carousel-inner"
+                    >
                         <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
-                             th:each="g, status : ${game}">
-                            <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
-                            <p></p>
-                            <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
-                                Dettagli
-                            </a>
+                             th:each=" entry,status : ${consoleMap}"
+                             th:if="${entry.key.getId() == 1 or entry.key.getId() == 2}"
+                        >
+                            <div th:each="e : ${entry.value}">
+                                <img alt="game-img" class="img-fluid border border-secondary"
+                                     th:src="${e.photo}">
+                                <p></p>
+                                <a class="btn btn-primary" th:href="@{/show/{id}(id=${e.id})}">
+                                    Dettagli
+                                </a>
+                            </div>
+
                         </div>
+
                     </div>
                     <button class="carousel-control-prev opacity-100" data-bs-slide="prev"
                             data-bs-target="#carouselPlay"
@@ -78,17 +86,26 @@
                 <img src="switch-left.jpg">
             </div>
 
+
             <div class="col-4 p-5">
                 <div class="carousel slide" id="carouselSwitch">
-                    <div class="carousel-inner">
+                    <div class="carousel-inner"
+                    >
                         <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
-                             th:each="g, status : ${game}">
-                            <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
-                            <p></p>
-                            <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
-                                Dettagli
-                            </a>
+                             th:each=" entry,status : ${consoleMap}"
+                             th:if="${entry.key.getId() == 3}"
+                        >
+                            <div th:each="e : ${entry.value}">
+                                <img alt="game-img" class="img-fluid border border-secondary"
+                                     th:src="${e.photo}">
+                                <p></p>
+                                <a class="btn btn-primary" th:href="@{/show/{id}(id=${e.id})}">
+                                    Dettagli
+                                </a>
+                            </div>
+
                         </div>
+
                     </div>
                     <button class="carousel-control-prev opacity-100" data-bs-slide="prev"
                             data-bs-target="#carouselSwitch"
@@ -119,21 +136,31 @@
 
             <div class="col-4 p-5">
                 <div class="carousel slide" id="carouselX">
-                    <div class="carousel-inner">
+                    <div class="carousel-inner"
+                    >
                         <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
-                             th:each="g, status : ${game}">
-                            <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
-                            <p></p>
-                            <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
-                                Dettagli
-                            </a>
+                             th:each=" entry,status : ${consoleMap}"
+                             th:if="${entry.key.getId() == 4}"
+                        >
+                            <div th:each="e : ${entry.value}">
+                                <img alt="game-img" class="img-fluid border border-secondary"
+                                     th:src="${e.photo}">
+                                <p></p>
+                                <a class="btn btn-primary" th:href="@{/show/{id}(id=${e.id})}">
+                                    Dettagli
+                                </a>
+                            </div>
+
                         </div>
+
                     </div>
-                    <button class="carousel-control-prev opacity-100" data-bs-slide="prev" data-bs-target="#carouselX"
+                    <button class="carousel-control-prev opacity-100" data-bs-slide="prev"
+                            data-bs-target="#carouselX"
                             type="button">
                         <span class="carousel-control-prev-icon"></span>
                     </button>
-                    <button class="carousel-control-next opacity-100" data-bs-slide="next" data-bs-target="#carouselX"
+                    <button class="carousel-control-next opacity-100" data-bs-slide="next"
+                            data-bs-target="#carouselX"
                             type="button">
                         <span class="carousel-control-next-icon"></span>
                     </button>
@@ -147,11 +174,10 @@
         </div>
 
         <h1 class="text-center my-3">I PIU' VENDUTI</h1>
-
         <div class="carousel slide p-5" id="carouselMax">
             <div class="carousel-inner">
                 <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
-                     th:each="p : ${popular}"
+                     th:each="p,status : ${popular}"
                 >
 
                     <img alt="game-img" class="img-fluid border border-secondary" th:src="${p.photo}">

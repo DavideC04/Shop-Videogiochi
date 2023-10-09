@@ -3,6 +3,8 @@ package org.exercise.ShopVideogiochi.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "consoles")
 public class Console {
@@ -30,4 +32,17 @@ public class Console {
         this.console = console;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Console console = (Console) o;
+        return Objects.equals(id, console.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

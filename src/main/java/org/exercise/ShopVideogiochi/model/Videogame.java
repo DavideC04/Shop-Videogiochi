@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.URL;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "games")
@@ -36,8 +37,6 @@ public class Videogame {
 
     @NotBlank(message = "Inserisci la tipologia di videogioco")
     private String genre;
-    @NotBlank(message = "Inserisci la tipologia di console")
-    private String console;
     @ManyToOne
     private Supply supply;
 
@@ -105,12 +104,13 @@ public class Videogame {
         this.genre = genre;
     }
 
-    public String getConsole() {
-        return console;
+
+    public List<Console> getConsoleList() {
+        return consoleList;
     }
 
-    public void setConsole(String console) {
-        this.console = console;
+    public void setConsoleList(List<Console> consoleList) {
+        this.consoleList = consoleList;
     }
 
     public Videogame(Integer id, String photo, String title, String editor, String description, BigDecimal price) {
@@ -124,5 +124,19 @@ public class Videogame {
 
     public Videogame() {
 
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Videogame videogame = (Videogame) o;
+        return Objects.equals(id, videogame.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
