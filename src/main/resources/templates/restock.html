@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head :: head('Admin')"></head>
+
+<body>
+<nav th:replace="fragments/navbar"></nav>
+<div class="container mt-5">
+    <form
+            id="restock-form"
+            th:action="@{/admin/add/{gameId}(gameId=${game.id})}"
+            th:object="${restock}"
+            method="post"
+    >
+        <input type="hidden" id="gameId" name="gameId" th:value="${game.id}" />
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="date" class="form-label fw-bold">Data</label>
+                <input type="date" class="form-control" id="date" name="date" th:field="*{date}">
+            </div>
+            <div class="col-md-4">
+                <label for="supplier" class="form-label fw-bold">Fornitore</label>
+                <input type="text" class="form-control" id="supplier" name="supplier" th:field="*{supplier}">
+            </div>
+            <div class="col-md-4">
+                <label for="price" class="form-label fw-bold">Prezzo</label>
+                <input type="number" class="form-control" id="price" step="0.01" th:field="*{price}">
+            </div>
+            <div class="col-md-4">
+                <label for="quantity" class="form-label fw-bold">Quantità</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" th:field="*{quantity}">
+            </div>
+        </div>
+        <div class="col-12 my-2">
+            <button type="submit" class="btn btn-primary">Acquista
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+
+<footer th:replace="fragments/footer">
+
+</body>
+</html>
