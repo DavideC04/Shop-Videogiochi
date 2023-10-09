@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -36,23 +33,45 @@ public class VideogameController {
     @GetMapping
     public String index(Model model) {
         List<Videogame> videogameList = videogameRepository.findAll();
+
+        //per recuperare videogiochi più venduti
         List<Purchase> purchaseList = purchaseRepository.findAll();
+        Map<Videogame, Integer> popularGamesMap = new HashMap<>();
         Set<Videogame> popularGames = new HashSet<>();
+
 
         for (Purchase p : purchaseList) {
 
+            LocalDateTime currDateTime = LocalDateTime.now();
+            LocalDateTime purchaseDateTime = p.getDateTime();
 
-            if (p.getDateTime().getMonth().equals(LocalDateTime.now().getMonth())) {
+
+            if (purchaseDateTime.getMonth().equals(currDateTime.getMonth()) && purchaseDateTime.getYear() == currDateTime.getYear()) {
                 Videogame game = p.getVideogame();
 
-                if (game.getPurchases().size() > 3) {
-                    popularGames.add(game);
+                if (popularGamesMap.containsKey(game)) {
+                    popularGamesMap.put(game, popularGamesMap.get(game) + 1);
+                } else {
+                    popularGamesMap.put(game, 1);
                 }
-            }
 
+            }
         }
 
+        for (Map.Entry<Videogame, Integer> entry : popularGamesMap.entrySet()) {
+            if (entry.getValue() > 3) {
+                popularGames.add(entry.getKey());
+            }
+        }
+
+
+        //per dividere in base alla console
+        List<Console> consoleList = consoleRepository.findAll();
+        Map<List<Videogame>, Integer> consoleMap = new HashMap<>();
+
+
         model.addAttribute("popular", popularGames);
+        model.addAttribute("console_map", consoleMap);
         model.addAttribute("game", videogameList);
         return "homepage";
     }
