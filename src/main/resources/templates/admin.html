@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head :: head('Admin')"></head>
+
+<body>
+<nav th:replace="fragments/navbar"></nav>
+
+<div class="container mt-3">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titolo</th>
+            <th>Prezzo</th>
+            <th>Quantità(da aggiungere)</th>
+            <th>Modifica</th>
+            <th>Elimina</th>
+            <th><a class="btn btn-black sm border-black text-white" th:href="@{/create}"><i class="fa-solid fa-plus" style="color: #000000;"></i></a></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="g : ${game}">
+            <td th:text="${g.id}"></td>
+            <td th:text="${g.title}"></td>
+            <td th:text="${g.price}"></td>
+            <td>0</td>
+
+            <td>
+                <a class="btn btn-primary small" th:href="@{/edit/{id}(id=${g.id})}"><i
+                        class="fa-regular fa-pen-to-square"></i></a>
+            </td>
+
+            <td>
+                <form method="post" th:action="@{/delete/{id}(id=${g.id})}">
+                <button class="btn btn-danger" type="submit"><i
+                        class="fa-solid fa-trash"></i></button>
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer th:replace="fragments/footer">
+
+</body>
+</html>

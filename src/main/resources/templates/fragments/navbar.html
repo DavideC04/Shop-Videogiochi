@@ -2,42 +2,39 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Document</title>
 </head>
 <body>
-<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" th:fragment="navbar">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold" th:href="@{/}">fando<span class="text-primary">games</span></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/}"> <i class="fa-solid fa-house"
+                    <a aria-current="page" class="nav-link active" th:href="@{/}"> <i class="fa-solid fa-house"
                                                                                       style="color: #0042aa;"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}"> <i class="fa-solid fa-user px-1" th:href="@{/login}"
-                                                                style="color: #0042aa;"></i> Accedi
+                    <a class="nav-link" th:href="@{/login}"> <i class="fa-solid fa-user px-1" style="color: #0042aa;"
+                                                                th:href="@{/login}"></i> Accedi
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-screwdriver-wrench px-1"
-                                                    style="color: #0042aa;"></i> Area Riservata</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/create}"><i class="fa-solid fa-plus" style="color: #0042aa;"></i>
-                        Aggiungi Videogioco</a>
+                    <a class="nav-link" th:href="@{/admin}"><i class="fa-solid fa-screwdriver-wrench px-1"
+                                                               style="color: #0042aa;"></i> Area Riservata</a>
                 </li>
             </ul>
 
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Cerca" aria-label="Search">
+                <input aria-label="Search" class="form-control me-2" placeholder="Cerca" type="search">
                 <button class="btn btn-outline-primary" type="submit">Search</button>
             </form>
         </div>

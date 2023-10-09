@@ -30,6 +30,10 @@ public class Videogame {
 
     @OneToMany(mappedBy = "videogame")
     private List<Purchase> purchases;
+
+    @ManyToMany
+    private List<Console> consoleList;
+
     @NotBlank(message = "Inserisci la tipologia di videogioco")
     private String genre;
     @NotBlank(message = "Inserisci la tipologia di console")
