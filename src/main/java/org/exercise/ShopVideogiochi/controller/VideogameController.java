@@ -6,6 +6,7 @@ import org.exercise.ShopVideogiochi.model.Purchase;
 import org.exercise.ShopVideogiochi.model.Videogame;
 import org.exercise.ShopVideogiochi.repository.ConsoleRepository;
 import org.exercise.ShopVideogiochi.repository.PurchaseRepository;
+import org.exercise.ShopVideogiochi.repository.RestockRepository;
 import org.exercise.ShopVideogiochi.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,8 @@ public class VideogameController {
 
     @Autowired
     private ConsoleRepository consoleRepository;
+    @Autowired
+    private RestockRepository restockRepository;
 
     @GetMapping
     public String index(Model model) {
@@ -167,12 +170,4 @@ public class VideogameController {
         return "login";
     }
 
-
-    // controller admin
-    @GetMapping("/admin")
-    public String admin(Model model) {
-        List<Videogame> videogameList = videogameRepository.findAll();
-        model.addAttribute("game", videogameList);
-        return "admin";
-    }
 }

@@ -14,6 +14,7 @@
             <th>Prezzo</th>
             <th>Quantità(da aggiungere)</th>
             <th>Modifica</th>
+            <th>Aggiungi</th>
             <th>Elimina</th>
             <th><a class="btn btn-black sm border-black text-white" th:href="@{/create}"><i class="fa-solid fa-plus" style="color: #000000;"></i></a></th>
         </tr>
@@ -23,13 +24,17 @@
             <td th:text="${g.id}"></td>
             <td th:text="${g.title}"></td>
             <td th:text="${g.price}"></td>
-            <td>0</td>
+            <td th:text="${g.restocks}"></td>
 
             <td>
                 <a class="btn btn-primary small" th:href="@{/edit/{id}(id=${g.id})}"><i
                         class="fa-regular fa-pen-to-square"></i></a>
             </td>
 
+            <td>
+                <a class="btn btn-primary small" th:href="@{/admin/add/{id}(id=${g.id})}"><i
+                        class="fa-solid fa-box-open"></i></a>
+            </td>
             <td>
                 <form method="post" th:action="@{/delete/{id}(id=${g.id})}">
                 <button class="btn btn-danger" type="submit"><i
