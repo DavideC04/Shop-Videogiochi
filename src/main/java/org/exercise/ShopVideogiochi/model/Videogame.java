@@ -36,8 +36,7 @@ public class Videogame {
 
     @ManyToMany
     private List<Console> consoleList;
-    @NotBlank(message = "Inserisci la tipologia di console")
-    private String console;
+
     @ManyToOne
     private Restock supply;
     @OneToMany(mappedBy = "videogame")
@@ -125,14 +124,6 @@ public class Videogame {
 
     public void setConsoleList(List<Console> consoleList) {
         this.consoleList = consoleList;
-    }
-
-    public String getConsole() {
-        return console;
-    }
-
-    public void setConsole(String console) {
-        this.console = console;
     }
 
     public List<Restock> getRestocks() {
