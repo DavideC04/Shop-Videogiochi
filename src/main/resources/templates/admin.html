@@ -12,7 +12,7 @@
             <th>ID</th>
             <th>Titolo</th>
             <th>Prezzo</th>
-            <th>Quantità(da aggiungere)</th>
+            <th>Quantit</th>
             <th>Modifica</th>
             <th>Aggiungi</th>
             <th>Elimina</th>
@@ -24,7 +24,11 @@
             <td th:text="${g.id}"></td>
             <td th:text="${g.title}"></td>
             <td th:text="${g.price}"></td>
-            <td th:text="${g.getTotalQuantity()}"></td>
+            <td
+                    th:text="${g.getTotalQuantity()}"
+                    th:classappend="${g.getTotalQuantity() < 10 ? 'fa-solid fa-triangle-exclamation' : ''}"
+
+            ></td>
 
             <td>
                 <a class="btn btn-primary small" th:href="@{/edit/{id}(id=${g.id})}"><i
