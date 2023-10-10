@@ -41,6 +41,28 @@
 
 </div>
 
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+        <h1>Cronologia assortimenti</h1>
+        <tr>
+            <th>Data</th>
+            <th>Fornitore</th>
+            <th>Prezzo</th>
+            <th>Quantità</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${game.restocks}">
+            <td th:text="${r.date}"></td>
+            <td th:text="${r.supplier}"></td>
+            <td th:text="${r.price}"></td>
+            <td th:text="${r.quantity}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 
 <footer th:replace="fragments/footer">
 
