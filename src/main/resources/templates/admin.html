@@ -24,8 +24,15 @@
             <td th:text="${g.id}"></td>
             <td th:text="${g.title}"></td>
             <td th:text="${g.price}"></td>
+
+            <td th:if="${g.getTotalQuantity() < 10}">
+                <a  class="btn btn-danger small" th:href="@{/admin/add/{id}(id=${g.id})}" >
+                    Rifornimento Urgente <span th:text="${g.getTotalQuantity()}" class="badge text-bg-secondary"></span>
+                </a>
+            </td>
+
             <td
-                    th:classappend="${g.getTotalQuantity() < 10 ? 'fa-solid fa-triangle-exclamation' : ''}"
+                    th:unless="${g.getTotalQuantity() < 10}"
                     th:text="${g.getTotalQuantity()}"></td>
 
             <td>
