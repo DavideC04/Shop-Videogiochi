@@ -2,65 +2,69 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head('Admin')"></head>
 
-<body>
 <nav th:replace="fragments/navbar"></nav>
-<div class="container mt-5">
-    <h1 th:text="|Assortimento: ${game.title}|"></h1>
-    <form
-            id="restock-form"
-            th:action="@{/admin/add/{gameId}(gameId=${game.id})}"
-            th:object="${restock}"
-            method="post"
-    >
-        <input type="hidden" th:field="*{videogame}" />
 
-        <div class="row g-3">
-            <div class="col-md-4">
-                <label for="date" class="form-label fw-bold">Data</label>
-                <input type="date" class="form-control" id="date" name="date" th:field="*{date}">
-            </div>
-            <div class="col-md-4">
-                <label for="supplier" class="form-label fw-bold">Fornitore</label>
-                <input type="text" class="form-control" id="supplier" name="supplier" th:field="*{supplier}">
-            </div>
-            <div class="col-md-4">
-                <label for="price" class="form-label fw-bold">Prezzo</label>
-                <input type="number" class="form-control" id="price" step="0.01" th:field="*{price}">
-            </div>
-            <div class="col-md-4">
-                <label for="quantity" class="form-label fw-bold">Quantità</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" th:field="*{quantity}">
-            </div>
-        </div>
-        <div class="col-12 my-2">
-            <button type="submit" class="btn btn-primary">Acquista
-            </button>
-        </div>
+<div class="container-fluid">
+    <div class="container mt-5" >
+        <h1 th:text="|Assortimento: ${game.title}|"></h1>
+        <form
+                id="restock-form"
+                th:action="@{/admin/add/{gameId}(gameId=${game.id})}"
+                th:object="${restock}"
+                method="post"
+        >
+            <input type="hidden" th:field="*{videogame}" />
 
-    </form>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="date" class="form-label fw-bold">Data</label>
+                    <input type="date" class="form-control" id="date" name="date" th:field="*{date}">
+                </div>
+                <div class="col-md-4">
+                    <label for="supplier" class="form-label fw-bold">Fornitore</label>
+                    <input type="text" class="form-control" id="supplier" name="supplier" th:field="*{supplier}">
+                </div>
+                <div class="col-md-4">
+                    <label for="price" class="form-label fw-bold">Prezzo</label>
+                    <input type="number" class="form-control" id="price" step="0.01" th:field="*{price}">
+                </div>
+                <div class="col-md-4">
+                    <label for="quantity" class="form-label fw-bold">Quantità</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" th:field="*{quantity}">
+                </div>
+            </div>
+            <div class="col-12 my-2">
+                <button type="submit" class="btn btn-primary">Acquista
+                </button>
+            </div>
 
-</div>
+        </form>
 
-<div class="container mt-5">
-    <table class="table">
-        <thead>
-        <h1>Cronologia assortimenti</h1>
-        <tr>
-            <th>Data</th>
-            <th>Fornitore</th>
-            <th>Prezzo</th>
-            <th>Quantità</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="r : ${game.restocks}">
-            <td th:text="${r.date}"></td>
-            <td th:text="${r.supplier}"></td>
-            <td th:text="${r.price}"></td>
-            <td th:text="${r.quantity}"></td>
-        </tr>
-        </tbody>
-    </table>
+    </div>
+
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
+            <h1>Cronologia assortimenti</h1>
+            <tr>
+                <th>Data</th>
+                <th>Fornitore</th>
+                <th>Prezzo</th>
+                <th>Quantità</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="r : ${game.restocks}">
+                <td th:text="${r.date}"></td>
+                <td th:text="${r.supplier}"></td>
+                <td th:text="${r.price}"></td>
+                <td th:text="${r.quantity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
 </div>
 
 
