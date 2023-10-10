@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.URL;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "games")
@@ -29,16 +28,24 @@ public class Videogame {
     @Min(1)
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "videogame")
+    @NotBlank(message = "Inserisci il genere")
+    private String genre;
+
+    @OneToMany(mappedBy = "videogame", cascade = {CascadeType.REMOVE})
     private List<Purchase> purchases;
 
     @ManyToMany
     private List<Console> consoleList;
-
-    @NotBlank(message = "Inserisci la tipologia di videogioco")
-    private String genre;
+    @NotBlank(message = "Inserisci la tipologia di console")
+    private String console;
     @ManyToOne
     private Supply supply;
+    @OneToMany(mappedBy = "videogame")
+    private List<Restock> restocks;
+
+    public Videogame() {
+
+    }
 
     public List<Purchase> getPurchases() {
         return purchases;
@@ -104,7 +111,6 @@ public class Videogame {
         this.genre = genre;
     }
 
-
     public List<Console> getConsoleList() {
         return consoleList;
     }
@@ -113,30 +119,19 @@ public class Videogame {
         this.consoleList = consoleList;
     }
 
-    public Videogame(Integer id, String photo, String title, String editor, String description, BigDecimal price) {
-        this.id = id;
-        this.photo = photo;
-        this.title = title;
-        this.editor = editor;
-        this.description = description;
-        this.price = price;
+    public String getConsole() {
+        return console;
     }
 
-    public Videogame() {
-
+    public void setConsole(String console) {
+        this.console = console;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Videogame videogame = (Videogame) o;
-        return Objects.equals(id, videogame.id);
+    public List<Restock> getRestocks() {
+        return restocks;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public void setRestocks(List<Restock> restocks) {
+        this.restocks = restocks;
     }
 }

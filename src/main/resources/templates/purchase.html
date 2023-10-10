@@ -6,46 +6,36 @@
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
-<div class="container">
+<div class="container my-3">
     <form
             id="purchase-form"
             th:action="@{/purchase/create}"
-            th:object="${purchase}"
             method="post"
+            th:object="${purchase}"
     >
-        <div class="row g-3">
-            <div class="col-md-4">
-                <label for="inputFirstName" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="inputFirstName" name="name">
-            </div>
-            <div class="col-md-4">
-                <label for="inputLastName" class="form-label">Cognome</label>
-                <input type="text" class="form-control" id="inputLastName" name="lastName">
-            </div>
-            <div class="col-md-4">
-                <label for="inputDateOfBirth" class="form-label">Data Di Nascita</label>
-                <input type="date" class="form-control" id="inputDateOfBirth" name="birthday">
-            </div>
-            <div class="col-md-4">
-                <label for="inputAddress" class="form-label">Indirizzo </label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Via..." name="address">
-            </div>
-            <div class="col-md-4">
-                <label for="inputCity" class="form-label">Città</label>
-                <input type="text" class="form-control" id="inputCity">
-            </div>
-
-        </div>
-        <div class="col-2">
-            <label for="inputQuantity" class="form-label">Quantità</label>
-            <input type="number" class="form-control" id="inputQuantity" name="quantity">
-        </div>
-        <div class="col-12 my-2">
-            <button type="submit" class="btn btn-primary">Acquista
-            </button>
+        <input type="hidden" th:field="*{videogame}">
+        <div class="form-group">
+            <label for="userId">Seleziona un utente per l'acquisto:</label>
+            <select class="form-control" id="userId" name="userId">
+                <option th:each="user : ${users}" th:value="${user.id}"
+                        th:text="|${user.name} ${user.lastName}|"></option>
+            </select>
         </div>
 
+        <div class="form-group">
+            <label for="quantity">Quantità:</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" th:field="*{quantity}"
+                   th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('quantity')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('quantity')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary my-2">Acquista</button>
     </form>
+
 </div>
 
 </body>

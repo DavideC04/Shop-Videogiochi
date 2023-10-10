@@ -4,22 +4,12 @@
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container my-2">
+    <h1>Grazie dell'Acquisto!</h1>
+    <h3>Riepilogo ordine:</h3>
 
-<h1>Conferma Acquisto</h1>
+    <a th:href="@{/}" class="btn btn-primary">Torna alla HomePage</a>
 
-<div>
-    <h2>Dettagli del Videogioco</h2>
-    <dl>
-        <dt>Titolo:</dt>
-        <dd th:text="${game.title}"></dd>
-
-        <dt>Editor:</dt>
-        <dd th:text="${game.editor}"></dd>
-
-        <dt>Genere:</dt>
-        <dd th:text="${game.genre}"></dd>
-
-    </dl>
 </div>
 
 </body>
