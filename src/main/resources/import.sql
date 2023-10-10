@@ -249,5 +249,25 @@ INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-
 INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:20:39", 20, 6, 21);
 INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 05:12:58", 9, 6, 5);
 
+INSERT INTO admin (birthday, email, last_name, name, password ) VALUES ("1970-12-02","lucamoretti@gmail.com","Moretti","Luca","mor70");
 
-
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-01",40,50,"Riccardo Tommasi",1);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-07-01",40,40,"Riccardo Tommasi",5);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-06-01",40,37,"Riccardo Tommasi",16);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-05-01",29.99,5,"Riccardo Tommasi",39);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-04-01",39.99,4,"Riccardo Tommasi",36);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-03-01",30,28,"Riccardo Tommasi",21);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-02-01",32.59,43,"Riccardo Tommasi",10);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-01-01",29.99,66,"Riccardo Tommasi",4);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-09-01",40.99,2,"Riccardo Tommasi",2);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-11",40.99,1,"Riccardo Tommasi",11);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-21",49.99,10,"Riccardo Tommasi",18);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-05",32.99,9,"Riccardo Tommasi",14);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-18",29.99,22,"Riccardo Tommasi",24);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-09-22",40,80,"Riccardo Tommasi",42);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-05-20",30,95,"Riccardo Tommasi",9);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-02-14",42.50,100,"Riccardo Tommasi",16);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-07-12",49,3,"Riccardo Tommasi",15);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-10-04",35,5,"Riccardo Tommasi",7);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-10-09",45,25,"Riccardo Tommasi",27);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-30",29.99,42,"Riccardo Tommasi",40);
