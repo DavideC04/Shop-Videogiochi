@@ -66,6 +66,7 @@ public class PurchaseController {
         if (userOptional.isPresent()) {
             form.setUser(userOptional.get());
             Purchase purchase = purchaseRepository.save(form);
+            
             redirectAttributes.addAttribute("id", purchase.getId());
             return "checkout";
         } else {
