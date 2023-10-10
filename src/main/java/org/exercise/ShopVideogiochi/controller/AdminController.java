@@ -1,6 +1,7 @@
 package org.exercise.ShopVideogiochi.controller;
 
 
+import jakarta.validation.Valid;
 import org.exercise.ShopVideogiochi.model.Restock;
 import org.exercise.ShopVideogiochi.model.Videogame;
 import org.exercise.ShopVideogiochi.repository.RestockRepository;
@@ -52,7 +53,7 @@ public class AdminController {
     }
 
     @PostMapping("/add/{gameId}")
-    public String doAdd(@ModelAttribute("restock") Restock restock, BindingResult bindingResult) {
+    public String doAdd(@Valid @ModelAttribute("restock") Restock restock, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "restock";
         } else {

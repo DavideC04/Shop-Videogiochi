@@ -5,13 +5,14 @@
 <body>
 <nav th:replace="fragments/navbar"></nav>
 <div class="container mt-5">
+    <h1 th:text="|Assortimento: ${game.title}|"></h1>
     <form
             id="restock-form"
             th:action="@{/admin/add/{gameId}(gameId=${game.id})}"
             th:object="${restock}"
             method="post"
     >
-        <input type="hidden" id="gameId" name="gameId" th:value="${game.id}" />
+        <input type="hidden" th:field="*{videogame}" />
 
         <div class="row g-3">
             <div class="col-md-4">
@@ -38,6 +39,28 @@
 
     </form>
 
+</div>
+
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+        <h1>Cronologia assortimenti</h1>
+        <tr>
+            <th>Data</th>
+            <th>Fornitore</th>
+            <th>Prezzo</th>
+            <th>Quantità</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${game.restocks}">
+            <td th:text="${r.date}"></td>
+            <td th:text="${r.supplier}"></td>
+            <td th:text="${r.price}"></td>
+            <td th:text="${r.quantity}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 
