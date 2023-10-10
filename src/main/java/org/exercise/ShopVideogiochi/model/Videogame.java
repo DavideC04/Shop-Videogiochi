@@ -39,7 +39,7 @@ public class Videogame {
     @NotBlank(message = "Inserisci la tipologia di console")
     private String console;
     @ManyToOne
-    private Supply supply;
+    private Restock supply;
     @OneToMany(mappedBy = "videogame")
     private List<Restock> restocks;
 
@@ -69,6 +69,14 @@ public class Videogame {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public int getTotalQuantity() {
+        int totalQuantity = 0;
+        for (Restock r : restocks) {
+            totalQuantity += r.getQuantity();
+        }
+        return totalQuantity;
     }
 
     public String getTitle() {

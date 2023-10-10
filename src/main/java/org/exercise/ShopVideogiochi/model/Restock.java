@@ -23,6 +23,7 @@ public class Restock {
     private String supplier;
     @NotNull
     private BigDecimal price;
+    @NotNull
     @ManyToOne
     private Videogame videogame;
 
@@ -73,6 +74,4 @@ public class Restock {
     public void setVideogame(Videogame videogame) {
         this.videogame = videogame;
     }
-
-
 }
