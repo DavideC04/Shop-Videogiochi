@@ -15,6 +15,7 @@ public class Purchase {
     private Integer id;
 
 
+    @Column(nullable = false)
     private LocalDateTime dateTime;
     @NotNull
     @Min(1)
@@ -67,7 +68,7 @@ public class Purchase {
 
     public Purchase(Integer id, LocalDateTime dateTime, @NotNull Integer quantity) {
         this.id = id;
-        this.dateTime = dateTime;
+        this.dateTime = LocalDateTime.now();
         this.quantity = quantity;
     }
 

@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,7 @@ public class PurchaseController {
             Videogame videogame = videogameOptional.get();
             Purchase purchase = new Purchase();
             purchase.setVideogame(videogame);
+            purchase.setDateTime(LocalDateTime.now());
             List<User> userList = userRepository.findAll();
             model.addAttribute("purchase", purchase);
             model.addAttribute("users", userList);
@@ -61,12 +63,13 @@ public class PurchaseController {
         }
     }
 
-    @PostMapping("/create/{id}")
-    public String doCreate(Model model, @Valid @ModelAttribute("purchase") Purchase form,
+    @PostMapping("/create/{gameId}")
+    public String doCreate(@PathVariable("gameId") Integer id, Model model, @Valid @ModelAttribute("purchase") Purchase form,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "purchase";
         }
+        System.out.println(form.getId());
         purchaseRepository.save(form);
         return "checkout";
     }

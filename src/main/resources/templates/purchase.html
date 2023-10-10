@@ -15,6 +15,7 @@
             th:object="${purchase}"
     >
         <input type="hidden" th:field="*{videogame}">
+        <input type="hidden" th:field="*{dateTime}">
         <div class="form-group col-4">
             <label for="userId">Seleziona un utente per l'acquisto:</label>
             <select class="form-control" id="userId" name="userId">
