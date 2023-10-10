@@ -66,15 +66,27 @@ public class VideogameController {
                 popularGames.add(entry.getKey());
             }
         }
-
+        System.out.println(popularGamesMap);
+        System.out.println(popularGames);
 
         //per dividere in base alla console
-        List<Console> consoleList = consoleRepository.findAll();
-        Map<List<Videogame>, Integer> consoleMap = new HashMap<>();
+        Map<Console, List<Videogame>> consoleMap = new HashMap<>();
+
+        for (Videogame v : videogameList) {
+
+            for (Console c : v.getConsoleList()) {
+
+                consoleMap.putIfAbsent(c, new ArrayList<>());
+
+                consoleMap.get(c).add(v);
+            }
+
+
+        }
 
 
         model.addAttribute("popular", popularGames);
-        model.addAttribute("console_map", consoleMap);
+        model.addAttribute("consoleMap", consoleMap);
         model.addAttribute("game", videogameList);
         return "homepage";
     }

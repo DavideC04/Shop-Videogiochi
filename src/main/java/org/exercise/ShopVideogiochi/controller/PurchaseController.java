@@ -2,6 +2,7 @@ package org.exercise.ShopVideogiochi.controller;
 
 import jakarta.validation.Valid;
 import org.exercise.ShopVideogiochi.model.Purchase;
+import org.exercise.ShopVideogiochi.model.User;
 import org.exercise.ShopVideogiochi.model.Videogame;
 import org.exercise.ShopVideogiochi.repository.PurchaseRepository;
 import org.exercise.ShopVideogiochi.repository.UserRepository;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -46,21 +48,30 @@ public class PurchaseController {
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("purchase", new Purchase());
+        List<User> userList = userRepository.findAll();
+        model.addAttribute("users", userList);
         return "purchase";
     }
 
     @PostMapping("/create")
-    public String doCreate(Model model, @Valid @ModelAttribute("purchase") Purchase form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String doCreate(Model model, @Valid @ModelAttribute("purchase") Purchase form,
+                           BindingResult bindingResult, RedirectAttributes redirectAttributes,
+                           @RequestParam("userId") Integer userId) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("users", userRepository.findAll());
             return "purchase";
         }
 
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            form.setUser(userOptional.get());
+            Purchase purchase = purchaseRepository.save(form);
+            redirectAttributes.addAttribute("id", purchase.getId());
+            return "checkout";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
-        Purchase acquisto = purchaseRepository.save(form);
-        redirectAttributes.addAttribute("id", acquisto.getId());
-
-        return "redirect:/purchase/show/" + acquisto.getId();
+        }
     }
-
-
 }
+

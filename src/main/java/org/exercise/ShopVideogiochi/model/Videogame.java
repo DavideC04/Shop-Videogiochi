@@ -31,7 +31,7 @@ public class Videogame {
     @NotBlank(message = "Inserisci il genere")
     private String genre;
 
-    @OneToMany(mappedBy = "videogame")
+    @OneToMany(mappedBy = "videogame", cascade = {CascadeType.REMOVE})
     private List<Purchase> purchases;
 
     @ManyToMany
