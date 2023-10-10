@@ -24,7 +24,9 @@
             <td th:text="${g.id}"></td>
             <td th:text="${g.title}"></td>
             <td th:text="${g.price}"></td>
-            <td th:text="${g.getTotalQuantity()}"></td>
+            <td
+                    th:classappend="${g.getTotalQuantity() < 10 ? 'fa-solid fa-triangle-exclamation' : ''}"
+                    th:text="${g.getTotalQuantity()}"></td>
 
             <td>
                 <a class="btn btn-primary small" th:href="@{/edit/{id}(id=${g.id})}"><i
