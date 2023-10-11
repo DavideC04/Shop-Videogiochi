@@ -1,8 +1,8 @@
 package org.exercise.ShopVideogiochi.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -18,8 +18,9 @@ public class Purchase {
 
     @Column(nullable = false)
     private LocalDateTime dateTime;
-    @NotNull
+
     @Min(1)
+    @Max(100)
     private Integer quantity;
 
     @ManyToOne

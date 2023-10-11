@@ -71,6 +71,7 @@ public class PurchaseController {
     public String doCreate(@PathVariable("gameId") Integer id, Model model, @Valid @ModelAttribute("purchase") Purchase form,
                            BindingResult bindingResult, @RequestParam("selectedUser") Integer selectedUserId) {
         if (bindingResult.hasErrors()) {
+            
             return "purchase";
         }
 
