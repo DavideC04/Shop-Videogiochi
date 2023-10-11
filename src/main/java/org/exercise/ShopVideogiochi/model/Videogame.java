@@ -71,14 +71,6 @@ public class Videogame {
         this.photo = photo;
     }
 
-    public int getTotalQuantity() {
-        int totalQuantity = 0;
-        for (Restock r : restocks) {
-            totalQuantity += r.getQuantity();
-        }
-        return totalQuantity;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -133,6 +125,22 @@ public class Videogame {
 
     public void setRestocks(List<Restock> restocks) {
         this.restocks = restocks;
+    }
+
+    public Restock getSupply() {
+        return supply;
+    }
+
+    public void setSupply(Restock supply) {
+        this.supply = supply;
+    }
+
+    public int getTotalQuantity() {
+        int totalQuantity = 0;
+        for (Restock r : restocks) {
+            totalQuantity += r.getQuantity();
+        }
+        return totalQuantity;
     }
 
     @Override

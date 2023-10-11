@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "restock")
@@ -15,10 +16,12 @@ public class Restock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotNull
     private LocalDate date;
     @Min(1)
     @NotNull(message = "Non può essere vuoto")
-    private Integer quantity = 1;
+    private Integer quantity;
     @NotBlank(message = "Non può essere vuoto")
     private String supplier;
     @NotNull(message = "Non può essere vuoto")
@@ -26,6 +29,11 @@ public class Restock {
     @NotNull
     @ManyToOne
     private Videogame videogame;
+
+
+    public Restock() {
+
+    }
 
     public Integer getId() {
         return id;
@@ -73,5 +81,18 @@ public class Restock {
 
     public void setVideogame(Videogame videogame) {
         this.videogame = videogame;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Restock restock = (Restock) o;
+        return Objects.equals(id, restock.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

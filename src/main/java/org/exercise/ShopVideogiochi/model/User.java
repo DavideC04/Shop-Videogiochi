@@ -1,10 +1,11 @@
 package org.exercise.ShopVideogiochi.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class User {
@@ -12,17 +13,25 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
     private String lastName;
+
+    @NotBlank(message = "inserisci lo username.")
     private String userName;
-    @NotNull
+
+    @NotBlank(message = "inserisci la tua email.")
     private String email;
-    @NotNull
+    @NotBlank(message = "inserisci la tua password.")
     private String password;
     private LocalDate birthday;
     private String address;
     @OneToMany(mappedBy = "user")
     private List<Purchase> purchases;
+
+    public User() {
+
+    }
 
 
     public Integer getId() {
@@ -97,17 +106,19 @@ public class User {
         this.purchases = purchases;
     }
 
-    public User(Integer id, String name, String lastName, String userName, @NotNull String email, @NotNull String password, LocalDate birthday) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-        this.birthday = birthday;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
     }
 
-    public User() {
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
+
+
 }
+

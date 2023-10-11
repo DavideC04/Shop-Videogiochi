@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "purchase")
@@ -25,6 +26,11 @@ public class Purchase {
     private Videogame videogame;
     @ManyToOne
     private User user;
+
+    public Purchase() {
+
+    }
+
 
     public Videogame getVideogame() {
         return videogame;
@@ -66,15 +72,17 @@ public class Purchase {
         this.user = user;
     }
 
-    public Purchase(Integer id, LocalDateTime dateTime, @NotNull Integer quantity) {
-        this.id = id;
-        this.dateTime = LocalDateTime.now();
-        this.quantity = quantity;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Purchase purchase = (Purchase) o;
+        return Objects.equals(id, purchase.id);
     }
 
-    public Purchase() {
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
-
-
 }

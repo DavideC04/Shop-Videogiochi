@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
-@Table(name = "consoles")
+@Table(name = "console")
 public class Console {
 
     @Id
@@ -17,6 +17,13 @@ public class Console {
     private String console;
 
     private String image;
+
+
+    public Console() {
+
+
+    }
+
 
     public String getImage() {
         return image;
