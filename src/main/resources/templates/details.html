@@ -21,16 +21,18 @@
             <div class="card w-100 border-black">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${game.title}"></h5>
-                    <div>
-                        <ul>
-                            <li th:each="c : ${game.consoleList}"
-                                th:text="${c.console}"></li>
-                        </ul>
+                    <div class="d-flex ">
+                        <div th:each="c : ${game.consoleList}">
+                            <span class="bold badge badge-pill secondary bg-secondary text-white mr-3"
+                                  th:text="${c.console}"></span>
+                        </div>
                     </div>
-                    <p class="card-text" th:text="${game.editor}"></p>
+                    <p class="card-text mt-3" th:text="${game.editor}"></p>
                     <p class="card-text" th:text="${game.genre}"></p>
                     <p class="card-text" th:text="${game.description}"></p>
                     <p class="card-text" th:text="|Prezzo: €${game.price}|"></p>
+                </div>
+                <div class="card-footer bg-white border-top-0 mb-1">
                     <div class="d-flex align-items-center">
                         <a class="btn btn-black border-black mx-2 " th:href="@{/purchase/create}"><i
                                 class="fa-solid fa-cart-shopping"></i></a>
