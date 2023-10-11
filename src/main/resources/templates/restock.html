@@ -7,31 +7,53 @@
 
 <div class="container my-5 mt-lg-5 bg-light">
     <div class="container mt-5">
-        <h1 th:text="|Assortimento: ${game.title}|"></h1>
+        <h1 th:text="|Assortimento: ${restock.videogame.title}|"></h1>
         <form
                 id="restock-form"
-                th:action="@{/admin/add/{gameId}(gameId=${game.id})}"
-                th:object="${restock}"
                 method="post"
+                th:action="@{/admin/add/{gameId}(gameId=${restock.videogame.id})}"
+                th:object="${restock}"
         >
-            <input type="hidden" th:field="*{videogame}"/>
+            <input th:field="*{videogame}" type="hidden"/>
 
             <div class="row g-3">
                 <div class="col-md-4">
-                    <label for="supplier" class="form-label fw-bold">Fornitore</label>
-                    <input type="text" class="form-control" id="supplier" name="supplier" th:field="*{supplier}">
+                    <label class="form-label fw-bold" for="supplier">Fornitore</label>
+                    <input class="form-control" id="supplier" name="supplier" required th:field="*{supplier}"
+                           type="text">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('supplier')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('supplier')}" th:text="${err}">
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
                 <div class="col-md-4">
-                    <label for="price" class="form-label fw-bold">Prezzo</label>
-                    <input type="number" class="form-control" id="price" step="0.01" th:field="*{price}">
+                    <label class="form-label fw-bold" for="price">Prezzo</label>
+                    <input class="form-control" id="price" required step="0.01" th:field="*{price}" type="number">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('price')}" th:text="${err}">
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
                 <div class="col-md-4">
-                    <label for="quantity" class="form-label fw-bold">Quantità</label>
-                    <input type="number" class="form-control" id="quantity" name="quantity" th:field="*{quantity}">
+                    <label class="form-label fw-bold" for="quantity">Quantità</label>
+                    <input class="form-control" id="quantity" name="quantity" th:field="*{quantity}" type="number">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('quantity')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('quantity')}" th:text="${err}">
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="col-12 my-2">
-                <button type="submit" class="btn btn-primary">Acquista
+
+            <div class="col-12 my-2 text-center">
+                <button class="btn btn-primary" type="submit">Acquista
                 </button>
             </div>
 
@@ -51,7 +73,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="r : ${game.restocks}">
+            <tr th:each="r : ${restock.videogame.restocks}">
                 <td th:text="${r.date}"></td>
                 <td th:text="${r.supplier}"></td>
                 <td th:text="${r.price}"></td>

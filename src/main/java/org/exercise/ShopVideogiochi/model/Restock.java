@@ -17,11 +17,11 @@ public class Restock {
     private Integer id;
     private LocalDate date;
     @Min(1)
-    @NotNull
+    @NotNull(message = "Non può essere vuoto")
     private Integer quantity = 1;
-    @NotBlank
+    @NotBlank(message = "Non può essere vuoto")
     private String supplier;
-    @NotNull
+    @NotNull(message = "Non può essere vuoto")
     private BigDecimal price;
     @NotNull
     @ManyToOne
