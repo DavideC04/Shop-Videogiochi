@@ -122,7 +122,7 @@ public class VideogameController {
         }
         videogameRepository.save(gameForm);
         // redirect
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     // metodo edit
