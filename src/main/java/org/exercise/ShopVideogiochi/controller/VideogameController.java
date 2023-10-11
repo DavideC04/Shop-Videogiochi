@@ -35,7 +35,7 @@ public class VideogameController {
     public String index(Model model) {
         List<Videogame> videogameList = videogameRepository.findAll();
 
-        //per recuperare videogiochi più venduti
+        //per recuperare videogiochi più venduti.
         List<Object[]> filteredPurchases = purchaseRepository.findPurchasesCurrMonthAndYear();
         Set<Videogame> popularGames = new HashSet<>();
 
