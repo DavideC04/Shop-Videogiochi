@@ -16,7 +16,7 @@
                      th:each="g, status : ${game}">
                     <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
                     <p></p>
-                    <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
+                    <a class="btn btn-success" th:href="@{/show/{id}(id=${g.id})}">
                         Dettagli
                     </a>
                 </div>
@@ -59,7 +59,7 @@
                                     <img alt="game-img" class="img-fluid border border-secondary"
                                          th:src="${game.photo}">
                                     <p></p>
-                                    <a class="btn btn-primary" th:href="@{/show/{id}(id=${game.id})}">
+                                    <a class="btn btn-success" th:href="@{/show/{id}(id=${game.id})}">
                                         Dettagli
                                     </a>
                                 </div>
@@ -98,7 +98,7 @@
 
                     <img alt="game-img" class="img-fluid border border-secondary" th:src="${game.photo}">
                     <p></p>
-                    <a class="btn btn-primary" th:href="@{/show/{id}(id=${game.id})}">
+                    <a class="btn btn-success" th:href="@{/show/{id}(id=${game.id})}">
                         Dettagli
                     </a>
 
