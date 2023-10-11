@@ -54,10 +54,10 @@ INSERT INTO games (photo,title,editor,genre,description,price) VALUES ('https://
 INSERT INTO games (photo,title,editor,genre,description,price) VALUES ('https://gaming-cdn.com/images/products/10178/616x353/elden-ring-xbox-one-xbox-series-x-s-xbox-one-xbox-series-x-s-gioco-microsoft-store-europe-cover.jpg?v=1683555064','Elden Ring','FromSoftware,Inc','Azione,Avventura,RPG',"UN NUOVO ACTION RPG FANTASY. Alzati, Senzaluce, e lasciati guidare dalla grazia verso la conquista dell'Anello ancestrale, il cui potere ti renderà lord dell'Interregno. Un mondo sconfinato e sorprendente Un vasto mondo, in cui lande sconfinate e dense di pericoli si intersecano senza soluzione di continuità a dedali sotterranei dalle sontuose architetture tridimensionali. ",49.56);
 INSERT INTO games (photo,title,editor,genre,description,price) VALUES ('https://gaming-cdn.com/images/products/2615/616x353/mario-kart-8-deluxe-switch-switch-gioco-nintendo-eshop-europe-cover.jpg?v=1649856900','Mario Kart 8 Deluxe Switch','Nintendo','Azione,Racing',"Mario Kart 8 Deluxe è un gioco di corse di carrelli immediatamente riconoscibile, l'ottavo della serie di Nintendo.",57.48);
 
-INSERT INTO consoles (console) VALUES ("PlayStation 5");
-INSERT INTO consoles (console) VALUES ("PlayStation 4");
-INSERT INTO consoles (console) VALUES ("Nintendo Switch");
-INSERT INTO consoles (console) VALUES ("Xbox");
+INSERT INTO consoles (console,image) VALUES ("PlayStation 5","ps5");
+INSERT INTO consoles (console,image) VALUES ("PlayStation 4","ps4");
+INSERT INTO consoles (console,image) VALUES ("Nintendo Switch","switch");
+INSERT INTO consoles (console,image) VALUES ("Xbox","xbox");
 
 INSERT INTO games_console_list (videogame_id, console_list_id) VALUES(1,1),(1,2),(1,4);
 
@@ -249,5 +249,25 @@ INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-
 INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:20:39", 20, 6, 21);
 INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 05:12:58", 9, 6, 5);
 
+INSERT INTO admin (birthday, email, last_name, name, password ) VALUES ("1970-12-02","lucamoretti@gmail.com","Moretti","Luca","mor70");
 
-
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-01",40,50,"Riccardo Tommasi",1);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-07-01",40,40,"Riccardo Tommasi",5);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-06-01",40,37,"Riccardo Tommasi",16);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-05-01",29.99,5,"Riccardo Tommasi",39);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-04-01",39.99,4,"Riccardo Tommasi",36);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-03-01",30,28,"Riccardo Tommasi",21);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-02-01",32.59,43,"Riccardo Tommasi",10);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-01-01",29.99,66,"Riccardo Tommasi",4);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-09-01",40.99,2,"Riccardo Tommasi",2);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-11",40.99,1,"Riccardo Tommasi",11);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-21",49.99,10,"Riccardo Tommasi",18);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-05",32.99,9,"Riccardo Tommasi",14);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-18",29.99,22,"Riccardo Tommasi",24);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-09-22",40,80,"Riccardo Tommasi",42);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-05-20",30,95,"Riccardo Tommasi",9);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-02-14",42.50,100,"Riccardo Tommasi",16);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-07-12",49,3,"Riccardo Tommasi",15);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-10-04",35,5,"Riccardo Tommasi",7);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-10-09",45,25,"Riccardo Tommasi",27);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-30",29.99,42,"Riccardo Tommasi",40);

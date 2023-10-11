@@ -5,7 +5,7 @@
 <body>
 <nav th:replace="fragments/navbar"></nav>
 
-<div class="container mt-3">
+<div class="container  my-5 mt-lg-5 bg-light">
     <table class="table">
         <thead>
         <tr>
@@ -24,7 +24,16 @@
             <td th:text="${g.id}"></td>
             <td th:text="${g.title}"></td>
             <td th:text="${g.price}"></td>
-            <td th:text="${g.getTotalQuantity()}"></td>
+
+            <td th:if="${g.getTotalQuantity() < 10}">
+                <a  class="btn btn-danger small" th:href="@{/admin/add/{id}(id=${g.id})}" >
+                    Rifornimento Urgente <span th:text="${g.getTotalQuantity()}" class="badge text-bg-secondary"></span>
+                </a>
+            </td>
+
+            <td
+                    th:unless="${g.getTotalQuantity() < 10}"
+                    th:text="${g.getTotalQuantity()}"></td>
 
             <td>
                 <a class="btn btn-primary small" th:href="@{/edit/{id}(id=${g.id})}"><i
@@ -44,6 +53,7 @@
         </tbody>
     </table>
 </div>
+
 
 <footer th:replace="fragments/footer">
 

@@ -16,6 +16,16 @@ public class Console {
     @NotBlank(message = "inserisci il nome della console.")
     private String console;
 
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -14,8 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,33 +45,33 @@ public class PurchaseController {
         }
     }
 
-    @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("purchase", new Purchase());
-        List<User> userList = userRepository.findAll();
-        model.addAttribute("users", userList);
-        return "purchase";
-    }
-
-    @PostMapping("/create")
-    public String doCreate(Model model, @Valid @ModelAttribute("purchase") Purchase form,
-                           BindingResult bindingResult, RedirectAttributes redirectAttributes,
-                           @RequestParam("userId") Integer userId) {
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("users", userRepository.findAll());
+    @GetMapping("/create/{id}")
+    public String create(@PathVariable("id") Integer id, Model model) {
+        Optional<Videogame> videogameOptional = videogameRepository.findById(id);
+        if (videogameOptional.isPresent()) {
+            Videogame videogame = videogameOptional.get();
+            Purchase purchase = new Purchase();
+            purchase.setVideogame(videogame);
+            purchase.setDateTime(LocalDateTime.now());
+            List<User> userList = userRepository.findAll();
+            model.addAttribute("purchase", purchase);
+            model.addAttribute("users", userList);
+            model.addAttribute("game", videogame);
             return "purchase";
-        }
-
-        Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()) {
-            form.setUser(userOptional.get());
-            Purchase purchase = purchaseRepository.save(form);
-            redirectAttributes.addAttribute("id", purchase.getId());
-            return "checkout";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-
         }
+    }
+
+    @PostMapping("/create/{gameId}")
+    public String doCreate(@PathVariable("gameId") Integer id, Model model, @Valid @ModelAttribute("purchase") Purchase form,
+                           BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "purchase";
+        }
+        System.out.println(form.getId());
+        purchaseRepository.save(form);
+        return "checkout";
     }
 }
 

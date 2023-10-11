@@ -16,7 +16,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -38,27 +37,22 @@ public class VideogameController {
         List<Videogame> videogameList = videogameRepository.findAll();
 
         //per recuperare videogiochi più venduti
-        List<Purchase> purchaseList = purchaseRepository.findAll();
+        List<Purchase> filteredPurchases = purchaseRepository.findPurchasesCurrMonthAndYear();
         Map<Videogame, Integer> popularGamesMap = new HashMap<>();
         Set<Videogame> popularGames = new HashSet<>();
 
 
-        for (Purchase p : purchaseList) {
+        for (Purchase p : filteredPurchases) {
 
-            LocalDateTime currDateTime = LocalDateTime.now();
-            LocalDateTime purchaseDateTime = p.getDateTime();
+            Videogame game = p.getVideogame();
 
-
-            if (purchaseDateTime.getMonth().equals(currDateTime.getMonth()) && purchaseDateTime.getYear() == currDateTime.getYear()) {
-                Videogame game = p.getVideogame();
-
-                if (popularGamesMap.containsKey(game)) {
-                    popularGamesMap.put(game, popularGamesMap.get(game) + 1);
-                } else {
-                    popularGamesMap.put(game, 1);
-                }
-
+            if (popularGamesMap.containsKey(game)) {
+                popularGamesMap.put(game, popularGamesMap.get(game) + 1);
+            } else {
+                popularGamesMap.put(game, 1);
             }
+
+
         }
 
         for (Map.Entry<Videogame, Integer> entry : popularGamesMap.entrySet()) {
