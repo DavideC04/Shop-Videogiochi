@@ -35,14 +35,14 @@
         </div>
 
         <th:block th:each="entry : ${consoleMap}"
-                  th:with="tagId = |carouselPlay${entry.key.id}|,imageName = ${entry.key.id == 1 || entry.key.id == 2} ? 'ps5' : (${entry.key.id == 3} ? 'switch' : 'xbox')"
+                  th:with="tagId = |carouselPlay${entry.key.id}|"
 
         >
 
             <h1 th:text="${entry.key.console}" class="text-center mt-5"></h1>
             <div class="row">
                 <div class="col-4">
-                    <img th:src="|${imageName}-left.jpeg|">
+                    <img th:src="|${entry.key.image}-left.jpeg|">
                 </div>
 
                 <div class="col-4 p-5">
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="col-4">
-                    <img th:src="|${imageName}-right.jpeg|">
+                    <img th:src="|${entry.key.image}-right.jpeg|">
                 </div>
             </div>
         </th:block>

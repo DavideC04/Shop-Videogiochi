@@ -54,10 +54,10 @@ INSERT INTO games (photo,title,editor,genre,description,price) VALUES ('https://
 INSERT INTO games (photo,title,editor,genre,description,price) VALUES ('https://gaming-cdn.com/images/products/10178/616x353/elden-ring-xbox-one-xbox-series-x-s-xbox-one-xbox-series-x-s-gioco-microsoft-store-europe-cover.jpg?v=1683555064','Elden Ring','FromSoftware,Inc','Azione,Avventura,RPG',"UN NUOVO ACTION RPG FANTASY. Alzati, Senzaluce, e lasciati guidare dalla grazia verso la conquista dell'Anello ancestrale, il cui potere ti renderà lord dell'Interregno. Un mondo sconfinato e sorprendente Un vasto mondo, in cui lande sconfinate e dense di pericoli si intersecano senza soluzione di continuità a dedali sotterranei dalle sontuose architetture tridimensionali. ",49.56);
 INSERT INTO games (photo,title,editor,genre,description,price) VALUES ('https://gaming-cdn.com/images/products/2615/616x353/mario-kart-8-deluxe-switch-switch-gioco-nintendo-eshop-europe-cover.jpg?v=1649856900','Mario Kart 8 Deluxe Switch','Nintendo','Azione,Racing',"Mario Kart 8 Deluxe è un gioco di corse di carrelli immediatamente riconoscibile, l'ottavo della serie di Nintendo.",57.48);
 
-INSERT INTO consoles (console) VALUES ("PlayStation 5");
-INSERT INTO consoles (console) VALUES ("PlayStation 4");
-INSERT INTO consoles (console) VALUES ("Nintendo Switch");
-INSERT INTO consoles (console) VALUES ("Xbox");
+INSERT INTO consoles (console,image) VALUES ("PlayStation 5","ps5");
+INSERT INTO consoles (console,image) VALUES ("PlayStation 4","ps4");
+INSERT INTO consoles (console,image) VALUES ("Nintendo Switch","switch");
+INSERT INTO consoles (console,image) VALUES ("Xbox","xbox");
 
 INSERT INTO games_console_list (videogame_id, console_list_id) VALUES(1,1),(1,2),(1,4);
 
