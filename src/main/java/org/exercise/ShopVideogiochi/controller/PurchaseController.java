@@ -57,21 +57,37 @@ public class PurchaseController {
             model.addAttribute("purchase", purchase);
             model.addAttribute("users", userList);
             model.addAttribute("game", videogame);
+
+            model.addAttribute("selectedUser", new User());
+
             return "purchase";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
+
     @PostMapping("/create/{gameId}")
     public String doCreate(@PathVariable("gameId") Integer id, Model model, @Valid @ModelAttribute("purchase") Purchase form,
-                           BindingResult bindingResult) {
+                           BindingResult bindingResult, @RequestParam("selectedUser") Integer selectedUserId) {
         if (bindingResult.hasErrors()) {
             return "purchase";
         }
-        System.out.println(form.getId());
-        purchaseRepository.save(form);
-        return "checkout";
+
+        Optional<Videogame> videogameOptional = videogameRepository.findById(id);
+        Optional<User> userOptional = userRepository.findById(selectedUserId);
+
+        if (videogameOptional.isPresent() && userOptional.isPresent()) {
+            Videogame videogame = videogameOptional.get();
+            User user = userOptional.get();
+            model.addAttribute("game", videogame);
+            model.addAttribute("users", user);
+            purchaseRepository.save(form);
+            return "checkout";
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
+
 }
 

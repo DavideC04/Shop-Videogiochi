@@ -7,13 +7,32 @@
 <div class="container my-3">
     <h1>Grazie dell'Acquisto!</h1>
     <h3>Riepilogo ordine:</h3>
-    <ul>
-        <li></li>
-    </ul>
+    <dl>
+        <dt>Nome videogioco</dt>
+        <dd th:text="${game.title}"></dd>
+        <dt>Quantità</dt>
+        <dd th:text="${purchase.quantity}"></dd>
+        <dt>Descrizione videogioco</dt>
+        <dd th:text="${game.description}"></dd>
+    </dl>
 
-    <a th:href="@{/}" class="btn btn-primary">Torna alla HomePage</a>
+    <h3>Dati Acquirente:</h3>
+    <dl>
+        <dt>Nome:</dt>
+        <dd th:text="${users.name}"></dd>
+        <dt>Cognome</dt>
+        <dd th:text="${users.lastName}"></dd>
+        <dt>Data di nascita</dt>
+        <dd th:text="${users.birthday}"></dd>
+        <dt>Email</dt>
+        <dd th:text="${users.email}"></dd>
+    </dl>
+
+    <a th:href="@{/}" class="btn btn-primary">Continua ad acquistare!</a>
 
 </div>
+
+<footer th:replace="fragments/footer"></footer>
 
 </body>
 </html>
