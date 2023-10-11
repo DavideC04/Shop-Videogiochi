@@ -2,7 +2,6 @@ package org.exercise.ShopVideogiochi.controller;
 
 import jakarta.validation.Valid;
 import org.exercise.ShopVideogiochi.model.Console;
-import org.exercise.ShopVideogiochi.model.Purchase;
 import org.exercise.ShopVideogiochi.model.Videogame;
 import org.exercise.ShopVideogiochi.repository.ConsoleRepository;
 import org.exercise.ShopVideogiochi.repository.PurchaseRepository;
@@ -37,31 +36,19 @@ public class VideogameController {
         List<Videogame> videogameList = videogameRepository.findAll();
 
         //per recuperare videogiochi più venduti
-        List<Purchase> filteredPurchases = purchaseRepository.findPurchasesCurrMonthAndYear();
-        Map<Videogame, Integer> popularGamesMap = new HashMap<>();
+        List<Object[]> filteredPurchases = purchaseRepository.findPurchasesCurrMonthAndYear();
         Set<Videogame> popularGames = new HashSet<>();
 
+        for (Object[] p : filteredPurchases) {
 
-        for (Purchase p : filteredPurchases) {
-
-            Videogame game = p.getVideogame();
-
-            if (popularGamesMap.containsKey(game)) {
-                popularGamesMap.put(game, popularGamesMap.get(game) + 1);
-            } else {
-                popularGamesMap.put(game, 1);
-            }
-
-
-        }
-
-        for (Map.Entry<Videogame, Integer> entry : popularGamesMap.entrySet()) {
-            if (entry.getValue() > 3) {
-                popularGames.add(entry.getKey());
+            Integer gameId = (Integer) p[0];
+            Long purchases = (Long) p[1];
+            Videogame game = videogameRepository.findById(gameId.intValue()).orElse(null);
+            if (purchases > 3) {
+                popularGames.add(game);
             }
         }
-        System.out.println(popularGamesMap);
-        System.out.println(popularGames);
+
 
         //per dividere in base alla console
         Map<Console, List<Videogame>> consoleMap = new HashMap<>();

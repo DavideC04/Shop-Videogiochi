@@ -88,16 +88,17 @@
             </div>
         </th:block>
 
+
         <h1 class="text-center my-3">I PIU' VENDUTI</h1>
         <div class="carousel slide p-5" id="carouselMax">
             <div class="carousel-inner">
                 <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
-                     th:each="p,status : ${popular}"
+                     th:each="game,status : ${popular}"
                 >
 
-                    <img alt="game-img" class="img-fluid border border-secondary" th:src="${p.photo}">
+                    <img alt="game-img" class="img-fluid border border-secondary" th:src="${game.photo}">
                     <p></p>
-                    <a class="btn btn-primary" th:href="@{/show/{id}(id=${p.id})}">
+                    <a class="btn btn-primary" th:href="@{/show/{id}(id=${game.id})}">
                         Dettagli
                     </a>
 
