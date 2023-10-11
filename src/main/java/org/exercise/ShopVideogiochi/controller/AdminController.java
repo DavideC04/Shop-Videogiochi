@@ -58,8 +58,9 @@ public class AdminController {
             return "restock";
         } else {
 
+            restock.setDate(LocalDate.now());
             restockRepository.save(restock);
-            return "redirect:/admin";
+            return "redirect:/admin/add/" + restock.getVideogame().getId();
         }
     }
 

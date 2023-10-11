@@ -6,7 +6,7 @@
 <nav th:replace="fragments/navbar"></nav>
 
 <div class="container my-5 mt-lg-5 bg-light">
-    <div class="container mt-5" >
+    <div class="container mt-5">
         <h1 th:text="|Assortimento: ${game.title}|"></h1>
         <form
                 id="restock-form"
@@ -14,13 +14,9 @@
                 th:object="${restock}"
                 method="post"
         >
-            <input type="hidden" th:field="*{videogame}" />
+            <input type="hidden" th:field="*{videogame}"/>
 
             <div class="row g-3">
-                <div class="col-md-4">
-                    <label for="date" class="form-label fw-bold">Data</label>
-                    <input type="date" class="form-control" id="date" name="date" th:field="*{date}">
-                </div>
                 <div class="col-md-4">
                     <label for="supplier" class="form-label fw-bold">Fornitore</label>
                     <input type="text" class="form-control" id="supplier" name="supplier" th:field="*{supplier}">
@@ -72,7 +68,7 @@
 </div>
 
 
-<footer th:replace="fragments/footer">
+<footer th:replace="fragments/footer"></footer>
 
 </body>
 </html>
