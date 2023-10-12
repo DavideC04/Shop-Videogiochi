@@ -20,6 +20,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+
     @GetMapping("/show/{userId}")
     public String show(@PathVariable("userId") Integer id, Model model) {
         Optional<User> userOptional = userRepository.findById(id);

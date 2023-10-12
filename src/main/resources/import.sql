@@ -133,12 +133,12 @@ INSERT INTO games_console_list (videogame_id,console_list_id) VALUES (41,4);
 
 INSERT INTO games_console_list (videogame_id,console_list_id) VALUES (42,3);
 
-INSERT INTO user (address, birthday, email, last_name, name, password, user_name ) VALUES ("via Trionfale, 8, Roma, 0042 ","2000-04-05","mariarossi@gmail.it","Rossi","Maria","tri05","maria_rossi");
-INSERT INTO user (address, birthday, email, last_name, name, password, user_name ) VALUES ("via Gioberti, 36, Firenze, 50129 ","1998-12-09","matteobruni@gmail.it","Bruni","Matteo","giotteo09","matteo_bruni");
-INSERT INTO user (address, birthday, email, last_name, name, password, user_name ) VALUES ("via Sonnino, 52, Cagliari, 09124 ","1995-03-01","soniabianchi@gmail.it","Bianchi","Sonia","sobi0301","sonia_bianchi");
-INSERT INTO user (address, birthday, email, last_name, name, password, user_name ) VALUES ("via Zorutti, 3, Trieste, 34137 ","1988-06-10","luigiverdi@gmail.it","Verdi","Luigi","zoru06","luigi_verdi");
-INSERT INTO user (address, birthday, email, last_name, name, password, user_name ) VALUES ("via Lomazzo, 72, Milano, 20057 ","2003-01-20","francescaricci@gmail.it","Ricci","Francesca","loma2003","francesca_ricci");
-INSERT INTO user (address, birthday, email, last_name, name, password, user_name ) VALUES ("via Marconi, 12, Cosenza, 87100 ","1962-11-14","andreamarino@gmail.it","Marino","Andrea","mar62","andrea_marino");
+INSERT INTO user (address, birthday, email, last_name, name, password, user_name, picture ) VALUES ("via Trionfale, 8, Roma, 0042 ","2000-04-05","mariarossi@gmail.it","Rossi","Maria","tri05","maria_rossi","https://staticfanpage.akamaized.net/wp-content/uploads/sites/6/2020/04/migliori-pc-da-gaming-1200x675.jpg");
+INSERT INTO user (address, birthday, email, last_name, name, password, user_name, picture) VALUES ("via Gioberti, 36, Firenze, 50129 ","1998-12-09","matteobruni@gmail.it","Bruni","Matteo","giotteo09","matteo_bruni","https://i.pinimg.com/736x/a9/5f/3d/a95f3d6a0419049a1ead03dd938333c4.jpg");
+INSERT INTO user (address, birthday, email, last_name, name, password, user_name, picture) VALUES ("via Sonnino, 52, Cagliari, 09124 ","1995-03-01","soniabianchi@gmail.it","Bianchi","Sonia","sobi0301","sonia_bianchi","https://media.istockphoto.com/id/1392486023/it/vettoriale/computer-gaming-pc-su-scrivania-per-videogiochi-in-camera-buia-con-luce-al-neon-luogo-di.jpg?s=170667a&w=0&k=20&c=rFzzbc_Y62-OnXunrtpwXSbrrwfkaQ7pAF2tBlsdJp8=");
+INSERT INTO user (address, birthday, email, last_name, name, password, user_name, picture) VALUES ("via Zorutti, 3, Trieste, 34137 ","1988-06-10","luigiverdi@gmail.it","Verdi","Luigi","zoru06","luigi_verdi","https://robots.net/wp-content/uploads/2023/08/what-is-a-good-gaming-pc-1691563099.jpg");
+INSERT INTO user (address, birthday, email, last_name, name, password, user_name, picture ) VALUES ("via Lomazzo, 72, Milano, 20057 ","2003-01-20","francescaricci@gmail.it","Ricci","Francesca","loma2003","francesca_ricci","https://media.wired.com/photos/627da1085d49787abdf713b4/191:100/w_1280,c_limit/Pakistani-Gamers-Want-a-Seat-at-the-Table-Culture-shutterstock_1949862841.jpg");
+INSERT INTO user (address, birthday, email, last_name, name, password, user_name, picture ) VALUES ("via Marconi, 12, Cosenza, 87100 ","1962-11-14","andreamarino@gmail.it","Marino","Andrea","mar62","andrea_marino","https://www.eurocassonetto.com/wp-content/uploads/stanza-gaming-1024x576.jpg");
 
 INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-02 12:20:12', 8, 1, 41);
 INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-01 11:12:10', 3, 1, 12);

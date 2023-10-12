@@ -26,10 +26,14 @@ public class User {
     private String password;
     private LocalDate birthday;
     private String address;
-    @OneToMany(mappedBy = "user")
+
+    private String picture;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
     private List<Purchase> purchases;
 
     public User() {
+
 
     }
 
@@ -106,6 +110,13 @@ public class User {
         this.purchases = purchases;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
     @Override
     public boolean equals(Object o) {
