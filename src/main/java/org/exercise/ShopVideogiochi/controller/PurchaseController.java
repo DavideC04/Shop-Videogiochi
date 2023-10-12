@@ -73,6 +73,15 @@ public class PurchaseController {
                            BindingResult bindingResult, @RequestParam("selectedUser") Integer selectedUserId) {
         if (bindingResult.hasErrors()) {
 
+            Videogame videogame = videogameRepository.findById(id).orElse(null);
+            Purchase purchase = new Purchase();
+            purchase.setQuantity(1);
+            purchase.setVideogame(videogame);
+            purchase.setDateTime(LocalDateTime.now());
+            model.addAttribute("purchase", purchase);
+            model.addAttribute("users", userRepository.findAll());
+            model.addAttribute("game", videogame);
+            model.addAttribute("selectedUser", new User());
             return "purchase";
         }
 
