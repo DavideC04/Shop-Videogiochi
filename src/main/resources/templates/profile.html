@@ -60,11 +60,15 @@
                                     <div class="carousel-inner">
                                         <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
                                              th:each="p,status : ${user.purchases}">
-                                            <img alt="game-img" class="img-fluid border border-secondary" th:src="${p.videogame.photo}">
-                                            <p></p>
-                                            <a class="btn btn-success" th:href="@{/show/{id}(id=${p.videogame.id})}">
-                                                Dettagli
-                                            </a>
+                                            <img th:src="${p.videogame.image}">
+                                            <dl>
+                                                <dt>Quantità</dt>
+                                                <dd th:text="${p.quantity}"></dd>
+                                                <dt>Totale</dt>
+                                                <dd th:text="|${p.getTotalPrice()}€|"></dd>
+                                                <dt>Data</dt>
+                                                <dd th:text="${p.dateTime}"></dd>
+                                            </dl>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center">

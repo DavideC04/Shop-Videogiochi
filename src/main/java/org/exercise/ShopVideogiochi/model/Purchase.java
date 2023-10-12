@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -79,7 +80,7 @@ public class Purchase {
 
     public BigDecimal getTotalPrice() {
 
-        return videogame.getPrice().multiply(BigDecimal.valueOf(quantity));
+        return videogame.getPrice().multiply(BigDecimal.valueOf(quantity).setScale(2, RoundingMode.HALF_EVEN));
 
     }
 
