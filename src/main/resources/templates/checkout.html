@@ -14,6 +14,8 @@
         <dd th:text="${purchase.quantity}"></dd>
         <dt>Descrizione videogioco</dt>
         <dd th:text="${game.description}"></dd>
+        <dt>Prezzo Totale Acquisto</dt>
+        <dd th:text="|${purchase.getTotalPrice()}€|"></dd>
     </dl>
 
     <h3>Dati Acquirente:</h3>

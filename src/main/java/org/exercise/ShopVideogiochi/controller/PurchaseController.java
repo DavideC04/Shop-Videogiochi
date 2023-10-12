@@ -51,6 +51,7 @@ public class PurchaseController {
         if (videogameOptional.isPresent()) {
             Videogame videogame = videogameOptional.get();
             Purchase purchase = new Purchase();
+            purchase.setQuantity(1);
             purchase.setVideogame(videogame);
             purchase.setDateTime(LocalDateTime.now());
             List<User> userList = userRepository.findAll();
@@ -71,7 +72,7 @@ public class PurchaseController {
     public String doCreate(@PathVariable("gameId") Integer id, Model model, @Valid @ModelAttribute("purchase") Purchase form,
                            BindingResult bindingResult, @RequestParam("selectedUser") Integer selectedUserId) {
         if (bindingResult.hasErrors()) {
-            
+
             return "purchase";
         }
 

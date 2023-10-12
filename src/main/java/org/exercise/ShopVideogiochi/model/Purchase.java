@@ -3,7 +3,9 @@ package org.exercise.ShopVideogiochi.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -19,6 +21,7 @@ public class Purchase {
     @Column(nullable = false)
     private LocalDateTime dateTime;
 
+    @NotNull(message = "inserisci una cifra tra 1-100.")
     @Min(1)
     @Max(100)
     private Integer quantity;
@@ -71,6 +74,13 @@ public class Purchase {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+
+    public BigDecimal getTotalPrice() {
+
+        return videogame.getPrice().multiply(BigDecimal.valueOf(quantity));
+
     }
 
 
