@@ -11,7 +11,7 @@
         <form
                 id="restock-form"
                 method="post"
-                th:action="@{/admin/add/{gameId}(gameId=${restock.videogame.id})}"
+                th:action="@{/storage/add/{gameId}(gameId=${restock.videogame.id})}"
                 th:object="${restock}"
         >
             <input th:field="*{videogame}" type="hidden"/>

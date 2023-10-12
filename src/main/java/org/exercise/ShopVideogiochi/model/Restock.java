@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,10 +17,9 @@ public class Restock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @NotNull
     private LocalDate date;
     @Min(1)
+    @Positive
     @NotNull(message = "Non può essere vuoto")
     private Integer quantity;
     @NotBlank(message = "Non può essere vuoto")
@@ -30,9 +30,13 @@ public class Restock {
     @ManyToOne
     private Videogame videogame;
 
-
     public Restock() {
 
+    }
+
+    @PrePersist
+    public void prePersist() {
+        date = LocalDate.now();
     }
 
     public Integer getId() {

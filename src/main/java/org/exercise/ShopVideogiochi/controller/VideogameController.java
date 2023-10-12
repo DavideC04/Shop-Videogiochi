@@ -109,7 +109,7 @@ public class VideogameController {
         }
         videogameRepository.save(gameForm);
         // redirect
-        return "redirect:/admin";
+        return "redirect:/storage";
     }
 
     // metodo edit
@@ -134,7 +134,7 @@ public class VideogameController {
             return "form";
         }
         videogameRepository.save(gameForm);
-        return "redirect:/admin";
+        return "redirect:/storage";
     }
 
 
@@ -142,7 +142,7 @@ public class VideogameController {
     @PostMapping("delete/{id}")
     public String delete(@PathVariable("id") Integer id) {
         videogameRepository.deleteById(id);
-        return "redirect:/admin";
+        return "redirect:/storage";
     }
 
     //Controller Omar  (NON TOCCARE -> IN FASE DI SVILUPPO)

@@ -32,6 +32,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
     private List<Purchase> purchases;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
     public User() {
 
 
@@ -110,6 +113,13 @@ public class User {
         this.purchases = purchases;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
     public String getPicture() {
         return picture;
     }

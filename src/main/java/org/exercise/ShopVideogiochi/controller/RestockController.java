@@ -20,8 +20,8 @@ import java.util.Optional;
 
 
 @Controller
-@RequestMapping("admin")
-public class AdminController {
+@RequestMapping("storage")
+public class RestockController {
 
     @Autowired
     private VideogameRepository videogameRepository;
@@ -29,11 +29,11 @@ public class AdminController {
     private RestockRepository restockRepository;
 
     @GetMapping
-    public String admin(Model model) {
+    public String index(Model model) {
         List<Videogame> videogameList = videogameRepository.findAll();
         List<Restock> restocks = restockRepository.findAll();
         model.addAttribute("game", videogameList);
-        return "admin";
+        return "storage";
     }
 
     @GetMapping("/add/{gameId}")
@@ -43,8 +43,6 @@ public class AdminController {
             Videogame videogame = videogameOptional.get();
             Restock restock = new Restock();
             restock.setVideogame(videogame);
-            restock.setDate(LocalDate.now());
-            model.addAttribute("game", videogame);
             model.addAttribute("restock", restock);
             return "restock";
         } else {
@@ -60,7 +58,7 @@ public class AdminController {
 
             restock.setDate(LocalDate.now());
             restockRepository.save(restock);
-            return "redirect:/admin/add/" + restock.getVideogame().getId();
+            return "redirect:/storage/add/" + restock.getVideogame().getId();
         }
     }
 
