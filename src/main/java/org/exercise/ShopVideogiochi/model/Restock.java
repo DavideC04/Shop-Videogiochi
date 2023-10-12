@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ public class Restock {
     private Integer id;
     private LocalDate date;
     @Min(1)
+    @Positive
     @NotNull(message = "Non può essere vuoto")
     private Integer quantity;
     @NotBlank(message = "Non può essere vuoto")
