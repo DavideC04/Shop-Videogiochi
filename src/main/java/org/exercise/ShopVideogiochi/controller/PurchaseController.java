@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -52,13 +51,15 @@ public class PurchaseController {
     public String create(@PathVariable("id") Integer id, Model model, Authentication authentication) {
         Utility.addUser(model, authentication);
         Optional<Videogame> videogameOptional = videogameRepository.findById(id);
-        if (videogameOptional.isPresent()) {
+        Optional<User> userOptional = userRepository.findByEmail(authentication.getName());
+        if (videogameOptional.isPresent() && userOptional.isPresent()) {
             Videogame videogame = videogameOptional.get();
+            User userList = userOptional.get();
             Purchase purchase = new Purchase();
             purchase.setQuantity(1);
             purchase.setVideogame(videogame);
             purchase.setDateTime(LocalDateTime.now());
-            List<User> userList = userRepository.findAll();
+
             model.addAttribute("purchase", purchase);
             model.addAttribute("users", userList);
             model.addAttribute("game", videogame);
