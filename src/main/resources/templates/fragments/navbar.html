@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
@@ -29,8 +29,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/storage}"><i class="fa-solid fa-screwdriver-wrench px-1"
-                                                                 style="color: green;"></i> Area Riservata</a>
+                    <a class="nav-link" th:href="@{/storage}" sec:authorize="hasAuthority('ADMIN')"><i
+                            class="fa-solid fa-screwdriver-wrench px-1"
+                            style="color: green;"></i> Area Riservata</a>
                 </li>
             </ul>
 
