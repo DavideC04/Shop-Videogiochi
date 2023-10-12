@@ -106,6 +106,7 @@ public class User {
         this.purchases = purchases;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
