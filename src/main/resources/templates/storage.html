@@ -26,8 +26,9 @@
             <td th:text="${g.price}"></td>
 
             <td th:if="${g.getTotalQuantity() < 10}">
-                <a  class="btn btn-danger small" th:href="@{/storage/add/{id}(id=${g.id})}" >
-                    Rifornimento Urgente <span th:text="${g.getTotalQuantity()}" class="badge text-bg-secondary"></span>
+                <a  class="btn btn-danger small"
+                    th:href="@{/storage/add/{id}(id=${g.id})}"> <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span th:text="${g.getTotalQuantity()}" class="badge text-bg-secondary"></span>
                 </a>
             </td>
 
