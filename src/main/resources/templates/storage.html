@@ -5,52 +5,61 @@
 <body>
 <nav th:replace="fragments/navbar"></nav>
 
-<div class="container  my-5 mt-lg-5 bg-light">
-    <table class="table">
+<div class="text-center my-3">
+    <h1>Magazzino </h1>
+    <a class="btn btn-black btn-sm border-black text-white" th:href="@{/create}">
+        <i class="fa-solid fa-plus" style="color: #000000;"></i>
+    </a>
+</div>
+
+<div class="container d-flex align-items-center">
+    <table class="table table-bordered">
         <thead>
         <tr>
-            <th>ID</th>
+            <th class="text-center">ID</th>
             <th>Titolo</th>
-            <th>Prezzo</th>
-            <th>Quantità(da aggiungere)</th>
-            <th>Modifica</th>
-            <th>Aggiungi</th>
-            <th>Elimina</th>
-            <th><a class="btn btn-black sm border-black text-white" th:href="@{/create}"><i class="fa-solid fa-plus" style="color: #000000;"></i></a></th>
+            <th class="text-center">Prezzo</th>
+            <th class="text-center">Quantità</th>
+            <th class="text-center">Modifica</th>
+            <th class="text-center">Aggiungi</th>
+            <th class="text-center">Elimina</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="g : ${game}">
-            <td th:text="${g.id}"></td>
-            <td th:text="${g.title}"></td>
-            <td th:text="${g.price}"></td>
+            <td class="text-center" th:text="${g.id}"></td>
+            <td class="text-left" th:text="${g.title}"></td>
+            <td class="text-center" th:text="${g.price}"></td>
 
-            <td th:if="${g.getTotalQuantity() < 10}">
-                <a  class="btn btn-danger small"
-                    th:href="@{/storage/add/{id}(id=${g.id})}"> <i class="fa-solid fa-triangle-exclamation"></i>
-                    <span th:text="${g.getTotalQuantity()}" class="badge text-bg-secondary"></span>
+            <td class="text-center" th:if="${g.getTotalQuantity() < 10}">
+                <div>
+                    <span th:text="${g.getTotalQuantity()}"></span>
+                    <a class="btn btn-danger small btn-sm" th:href="@{/storage/add/{id}(id=${g.id})}">
+                        <span><i class="fa-solid fa-triangle-exclamation fa-xs"></i></span>
+                    </a>
+                </div>
+            </td>
+
+            <td class="text-center" th:unless="${g.getTotalQuantity() < 10}" th:text="${g.getTotalQuantity()}"></td>
+
+            <td class="text-center">
+                <a class="btn btn-success" th:href="@{/edit/{id}(id=${g.id})}">
+                    <i class="fa-regular fa-pen-to-square"></i>
                 </a>
             </td>
 
-            <td
-                    th:unless="${g.getTotalQuantity() < 10}"
-                    th:text="${g.getTotalQuantity()}"></td>
-
-            <td>
-                <a class="btn btn-primary small" th:href="@{/edit/{id}(id=${g.id})}"><i
-                        class="fa-regular fa-pen-to-square"></i></a>
+            <td class="text-center">
+                <a class="btn btn-success" th:href="@{/storage/add/{id}(id=${g.id})}">
+                    <i class="fa-solid fa-warehouse"></i>
+                </a>
             </td>
-
-            <td>
-                <a class="btn btn-primary small" th:href="@{/storage/add/{id}(id=${g.id})}"><i
-                        class="fa-solid fa-box-open"></i></a>
+            <td class="text-center">
+                <form method="post" th:action="@{/delete/{id}(id=${g.id})}" onclick="return confirm('Vuoi davvero eliminare questo elemento? \nQuesta azione non potrà essere annullata.');">
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </form>
             </td>
-            <td>
-                <form method="post" th:action="@{/delete/{id}(id=${g.id})}">
-                <button class="btn btn-danger" type="submit"><i
-                        class="fa-solid fa-trash"></i></button></form>
-            </td>
-
         </tr>
         </tbody>
     </table>
