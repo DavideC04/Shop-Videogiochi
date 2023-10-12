@@ -80,7 +80,7 @@ public class Purchase {
 
     public BigDecimal getTotalPrice() {
 
-        return videogame.getPrice().multiply(BigDecimal.valueOf(quantity).setScale(2, RoundingMode.HALF_EVEN));
+        return videogame.getPrice().multiply(BigDecimal.valueOf(quantity)).setScale(2, RoundingMode.HALF_EVEN);
 
     }
 

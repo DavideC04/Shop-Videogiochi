@@ -1,9 +1,11 @@
 package org.exercise.ShopVideogiochi.controller;
 
 import org.exercise.ShopVideogiochi.model.User;
+import org.exercise.ShopVideogiochi.model.Utility;
 import org.exercise.ShopVideogiochi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +16,16 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserController {
 
     @Autowired
     UserRepository userRepository;
 
 
-    @GetMapping("/show/{userId}")
-    public String show(@PathVariable("userId") Integer id, Model model) {
+    @GetMapping("/user/show/{userId}")
+    public String show(@PathVariable("userId") Integer id, Model model, Authentication authentication) {
+        Utility.addUser(model, authentication);
         Optional<User> userOptional = userRepository.findById(id);
 
         if (userOptional.isPresent()) {

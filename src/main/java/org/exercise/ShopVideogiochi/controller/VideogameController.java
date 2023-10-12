@@ -2,13 +2,12 @@ package org.exercise.ShopVideogiochi.controller;
 
 import jakarta.validation.Valid;
 import org.exercise.ShopVideogiochi.model.Console;
+import org.exercise.ShopVideogiochi.model.Utility;
 import org.exercise.ShopVideogiochi.model.Videogame;
-import org.exercise.ShopVideogiochi.repository.ConsoleRepository;
-import org.exercise.ShopVideogiochi.repository.PurchaseRepository;
-import org.exercise.ShopVideogiochi.repository.RestockRepository;
-import org.exercise.ShopVideogiochi.repository.VideogameRepository;
+import org.exercise.ShopVideogiochi.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,9 +29,12 @@ public class VideogameController {
     private ConsoleRepository consoleRepository;
     @Autowired
     private RestockRepository restockRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping
-    public String index(Model model) {
+    public String index(Model model, Authentication authentication) {
+        Utility.addUser(model, authentication);
         List<Videogame> videogameList = videogameRepository.findAll();
 
         //per recuperare videogiochi più venduti.
@@ -65,7 +67,6 @@ public class VideogameController {
 
         }
 
-
         model.addAttribute("popular", popularGames);
         model.addAttribute("consoleMap", consoleMap);
         model.addAttribute("game", videogameList);
@@ -75,7 +76,9 @@ public class VideogameController {
 
     // metodo dei dettagli
     @GetMapping("/show/{id}")
-    public String show(@PathVariable("id") Integer id, Model model) {
+    public String show(@PathVariable("id") Integer id, Model model, Authentication authentication) {
+        Utility.addUser(model, authentication);
+        Utility.addAdmin(model, authentication);
         Optional<Videogame> videogameOptional = videogameRepository.findById(id);
         if (videogameOptional.isPresent()) {
             Videogame videogameDB = videogameOptional.get();
@@ -89,7 +92,8 @@ public class VideogameController {
 
     // metodo create
     @GetMapping("/create")
-    public String create(Model model) {
+    public String create(Model model, Authentication authentication) {
+        Utility.addAdmin(model, authentication);
 
         List<Console> consoleList = consoleRepository.findAll();
         model.addAttribute("console", consoleList);
@@ -99,7 +103,8 @@ public class VideogameController {
     }
 
     @PostMapping("/create")
-    public String doCreate(Model model, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
+    public String doCreate(Model model, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult, Authentication authentication) {
+        Utility.addAdmin(model, authentication);
 
 
         // if bindingResult
@@ -114,7 +119,8 @@ public class VideogameController {
 
     // metodo edit
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Integer id, Model model) {
+    public String edit(@PathVariable("id") Integer id, Model model, Authentication authentication) {
+        Utility.addAdmin(model, authentication);
         Optional<Videogame> result = videogameRepository.findById(id);
         if (result.isPresent()) {
             model.addAttribute("console", consoleRepository.findAll());
@@ -127,8 +133,9 @@ public class VideogameController {
     }
 
     @PostMapping("/edit/{id}")
-    public String doEdit(Model model, @PathVariable("id") Integer id, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
+    public String doEdit(Model model, @PathVariable("id") Integer id, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult, Authentication authentication) {
         if (bindingResult.hasErrors()) {
+            Utility.addAdmin(model, authentication);
 
             model.addAttribute("console", consoleRepository.findAll());
             return "form";
@@ -140,7 +147,8 @@ public class VideogameController {
 
     // metodo delete
     @PostMapping("delete/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    public String delete(@PathVariable("id") Integer id, Model model, Authentication authentication) {
+        Utility.addAdmin(model, authentication);
         videogameRepository.deleteById(id);
         return "redirect:/storage";
     }

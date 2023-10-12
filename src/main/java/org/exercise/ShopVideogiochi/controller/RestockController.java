@@ -3,11 +3,13 @@ package org.exercise.ShopVideogiochi.controller;
 
 import jakarta.validation.Valid;
 import org.exercise.ShopVideogiochi.model.Restock;
+import org.exercise.ShopVideogiochi.model.Utility;
 import org.exercise.ShopVideogiochi.model.Videogame;
 import org.exercise.ShopVideogiochi.repository.RestockRepository;
 import org.exercise.ShopVideogiochi.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,7 +31,8 @@ public class RestockController {
     private RestockRepository restockRepository;
 
     @GetMapping
-    public String index(Model model) {
+    public String index(Model model, Authentication authentication) {
+        Utility.addUser(model, authentication);
         List<Videogame> videogameList = videogameRepository.findAll();
         List<Restock> restocks = restockRepository.findAll();
         model.addAttribute("game", videogameList);

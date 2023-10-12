@@ -40,7 +40,7 @@ public class SecurityConfigurator {
                 .requestMatchers("/user/**").hasAuthority("USER")
                 .requestMatchers("/show/**").hasAnyAuthority("USER", "ADMIN")
                 .requestMatchers("/create/**", "/delete/**", "/edit/**").hasAuthority("ADMIN")
-                .requestMatchers("/**").permitAll()
+                .requestMatchers("/**").hasAnyAuthority("USER", "ADMIN")
                 .and().formLogin()
                 .and().logout()
                 .and().csrf().disable();

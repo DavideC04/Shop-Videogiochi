@@ -3,12 +3,14 @@ package org.exercise.ShopVideogiochi.controller;
 import jakarta.validation.Valid;
 import org.exercise.ShopVideogiochi.model.Purchase;
 import org.exercise.ShopVideogiochi.model.User;
+import org.exercise.ShopVideogiochi.model.Utility;
 import org.exercise.ShopVideogiochi.model.Videogame;
 import org.exercise.ShopVideogiochi.repository.PurchaseRepository;
 import org.exercise.ShopVideogiochi.repository.UserRepository;
 import org.exercise.ShopVideogiochi.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,7 +35,8 @@ public class PurchaseController {
 
 
     @GetMapping("/show/{id}")
-    public String show(@PathVariable("id") Integer id, Model model) {
+    public String show(@PathVariable("id") Integer id, Model model, Authentication authentication) {
+        Utility.addUser(model, authentication);
         Optional<Videogame> videogameOptional = videogameRepository.findById(id);
         if (videogameOptional.isPresent()) {
             Videogame videogameDB = videogameOptional.get();
@@ -46,7 +49,8 @@ public class PurchaseController {
     }
 
     @GetMapping("/create/{id}")
-    public String create(@PathVariable("id") Integer id, Model model) {
+    public String create(@PathVariable("id") Integer id, Model model, Authentication authentication) {
+        Utility.addUser(model, authentication);
         Optional<Videogame> videogameOptional = videogameRepository.findById(id);
         if (videogameOptional.isPresent()) {
             Videogame videogame = videogameOptional.get();
@@ -70,7 +74,8 @@ public class PurchaseController {
 
     @PostMapping("/create/{gameId}")
     public String doCreate(@PathVariable("gameId") Integer id, Model model, @Valid @ModelAttribute("purchase") Purchase form,
-                           BindingResult bindingResult, @RequestParam("selectedUser") Integer selectedUserId) {
+                           BindingResult bindingResult, @RequestParam("selectedUser") Integer selectedUserId, Authentication authentication) {
+        Utility.addUser(model, authentication);
         if (bindingResult.hasErrors()) {
 
             Videogame videogame = videogameRepository.findById(id).orElse(null);

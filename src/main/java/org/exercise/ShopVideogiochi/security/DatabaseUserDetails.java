@@ -65,4 +65,14 @@ public class DatabaseUserDetails implements UserDetails {
     public Integer getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "DatabaseUserDetails{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", authorities=" + authorities +
+                '}';
+    }
 }

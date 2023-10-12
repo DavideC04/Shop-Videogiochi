@@ -23,18 +23,20 @@
                                                                                       style="color: green;"></i>
                         Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}"> <i class="fa-solid fa-user px-1" style="color: green;"
-                                                                th:href="@{/login}"></i> Accedi
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/storage}" sec:authorize="hasAuthority('ADMIN')"><i
                             class="fa-solid fa-screwdriver-wrench px-1"
                             style="color: green;"></i> Area Riservata</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/user}" sec:authorize="hasAuthority('USER')"><i
+                    <a class="nav-link" th:href="@{/logout}"> <i class="fa-solid fa-user px-1" style="color: green;"
+                    ></i>Logout
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/show/{id}(id=${user.id})}"
+                       sec:authorize="hasAuthority('USER')"><i
                             class="fa-solid fa-screwdriver-wrench px-1"
                             style="color: green;"></i>Profilo</a>
                 </li>

@@ -60,7 +60,7 @@
                                     <div class="carousel-inner">
                                         <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
                                              th:each="p,status : ${user.purchases}">
-                                            <img th:src="${p.videogame.image}">
+                                            <img th:src="${p.videogame.photo}">
                                             <dl>
                                                 <dt>Quantità</dt>
                                                 <dd th:text="${p.quantity}"></dd>

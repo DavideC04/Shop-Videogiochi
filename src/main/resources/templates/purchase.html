@@ -19,11 +19,11 @@
 
 
         <div class="form-group col-4">
-            <label for="selectedUser">Seleziona un utente per l'acquisto:</label>
+            <label for="selectedUser">Seleziona l'indirizzo di spedizione:</label>
             <select class="form-control" id="selectedUser" name="selectedUser">
                 <option selected>- Nessuno</option>
                 <option th:each="user : ${users}" th:value="${user.id}"
-                        th:text="|${user.name} ${user.lastName}|"></option>
+                        th:text="${user.address}"></option>
             </select>
         </div>
 
