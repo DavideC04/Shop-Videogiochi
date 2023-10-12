@@ -43,8 +43,6 @@ public class AdminController {
             Videogame videogame = videogameOptional.get();
             Restock restock = new Restock();
             restock.setVideogame(videogame);
-            restock.setDate(LocalDate.now());
-            model.addAttribute("game", videogame);
             model.addAttribute("restock", restock);
             return "restock";
         } else {

@@ -16,8 +16,6 @@ public class Restock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @NotNull
     private LocalDate date;
     @Min(1)
     @NotNull(message = "Non può essere vuoto")
@@ -30,9 +28,13 @@ public class Restock {
     @ManyToOne
     private Videogame videogame;
 
-
     public Restock() {
 
+    }
+
+    @PrePersist
+    public void prePersist() {
+        date = LocalDate.now();
     }
 
     public Integer getId() {
