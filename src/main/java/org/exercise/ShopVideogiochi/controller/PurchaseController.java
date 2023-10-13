@@ -51,7 +51,7 @@ public class PurchaseController {
     public String create(@PathVariable("id") Integer id, Model model, Authentication authentication) {
         Utility.addUser(model, authentication);
         Optional<Videogame> videogameOptional = videogameRepository.findById(id);
-        Optional<User> userOptional = userRepository.findByEmail(authentication.getName());
+        Optional<User> userOptional = userRepository.findByUserName(authentication.getName());
         if (videogameOptional.isPresent() && userOptional.isPresent()) {
             Videogame videogame = videogameOptional.get();
             User userList = userOptional.get();
