@@ -97,40 +97,37 @@
         </th:block>
 
 
-        <h1 class="text-center my-3">I PIU' VENDUTI</h1>
-        <div class="carousel slide p-5" id="carouselMax">
-            <div class="carousel-inner">
+        <div th:if="${popular != null}">
+            <h1 class="text-center my-3">I PIU' VENDUTI</h1>
+            <div class="carousel slide p-5" id="carouselMax">
+                <div class="carousel-inner">
 
 
-                <div th:if="${ popular != null}" class="carousel-item"
-                     th:classappend="${status.index == 0} ? 'active' : ''"
-                     th:each="game,status : ${popular}"
-                >
+                    <div class="carousel-item"
+                         th:classappend="${status.index == 0} ? 'active' : ''"
+                         th:each="game,status : ${popular}"
+                    >
 
-                    <img alt="game-img" class="img-fluid border border-secondary" th:src="${game.photo}">
-                    <p></p>
-                    <a class="btn btn-success" th:href="@{/show/{id}(id=${game.id})}">
-                        Dettagli
-                    </a>
+                        <img alt="game-img" class="img-fluid border border-secondary" th:src="${game.photo}">
+                        <p></p>
+                        <a class="btn btn-success" th:href="@{/show/{id}(id=${game.id})}">
+                            Dettagli
+                        </a>
+
+                    </div>
 
                 </div>
-
-                <div th:if="${ popular == null }">
-                    <div class="alert alert-success"> Nessun Risultato</div>
-                </div>
-
-
+                <button class="carousel-control-prev opacity-100 bg-dark" data-bs-slide="prev"
+                        data-bs-target="#carouselMax"
+                        type="button">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next opacity-100 bg-dark " data-bs-slide="next"
+                        data-bs-target="#carouselMax"
+                        type="button">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
             </div>
-            <button class="carousel-control-prev opacity-100 bg-dark" data-bs-slide="prev"
-                    data-bs-target="#carouselMax"
-                    type="button">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next opacity-100 bg-dark " data-bs-slide="next"
-                    data-bs-target="#carouselMax"
-                    type="button">
-                <span class="carousel-control-next-icon"></span>
-            </button>
         </div>
 
 
