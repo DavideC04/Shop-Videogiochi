@@ -26,6 +26,8 @@ public class User {
     @NotBlank(message = "inserisci la tua password.")
     private String password;
     private LocalDate birthday;
+
+    @NotBlank
     private String address;
 
     private String picture;
@@ -121,6 +123,7 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
     public String getPicture() {
         return picture;
     }

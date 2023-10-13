@@ -3,7 +3,9 @@
 <head th:replace="fragments/head :: head('Conferma acquisto')">
 </head>
 <body>
-<nav th:replace="fragments/navbar :: navbar"></nav>
+
+<nav th:replace="fragments/navbar :: navbar(area='profile')"></nav>
+
 <div class="container my-3">
     <h1>Grazie dell'Acquisto!</h1>
     <h3>Riepilogo ordine:</h3>
