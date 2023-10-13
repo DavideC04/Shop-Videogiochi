@@ -19,8 +19,8 @@
             <div class="row g-3">
                 <div class="col-md-4">
                     <label class="form-label fw-bold" for="supplier">Fornitore</label>
-                    <input class="form-control" id="supplier" name="supplier" required th:field="*{supplier}"
-                           type="text">
+                    <input class="form-control" id="supplier" name="supplier" required th:errorClass="is-invalid"
+                           th:field="*{supplier}" type="text">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('supplier')}">
                         <ul>
                             <li th:each="err : ${#fields.errors('supplier')}" th:text="${err}">
@@ -31,7 +31,9 @@
 
                 <div class="col-md-4">
                     <label class="form-label fw-bold" for="price">Prezzo</label>
-                    <input class="form-control" id="price" required step="0.01" th:field="*{price}" type="number">
+                    <input class="form-control" id="price" required step="0.01" th:errorClass="is-invalid"
+                           th:field="*{price}"
+                           type="number">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
                         <ul>
                             <li th:each="err : ${#fields.errors('price')}" th:text="${err}">
@@ -42,7 +44,8 @@
 
                 <div class="col-md-4">
                     <label class="form-label fw-bold" for="quantity">Quantità</label>
-                    <input class="form-control" id="quantity" name="quantity" th:field="*{quantity}" type="number">
+                    <input class="form-control" id="quantity" name="quantity" th:errorClass="is-invalid" th:field="*{quantity}"
+                           type="number">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('quantity')}">
                         <ul>
                             <li th:each="err : ${#fields.errors('quantity')}" th:text="${err}">

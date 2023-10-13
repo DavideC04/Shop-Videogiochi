@@ -24,6 +24,7 @@ public class Restock {
     private Integer quantity;
     @NotBlank(message = "Non può essere vuoto")
     private String supplier;
+    @Min(1)
     @NotNull(message = "Non può essere vuoto")
     private BigDecimal price;
     @NotNull
