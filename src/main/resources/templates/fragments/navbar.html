@@ -54,13 +54,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/user/show/{id}(id=${user.id})}"
+                    <a class="nav-link" th:href="@{'/user/show/' + ${user.id}}"
+
                        sec:authorize="hasAuthority('USER')"
                        th:classappend="${#strings.equals(area,'profile') ? 'active' : ''}"
-                    ><i
-                            class="fa-solid fa-screwdriver-wrench px-1"
-                            style="color: green;"></i>Profilo</a>
+                    ><i class="fa-solid fa-screwdriver-wrench px-1" style="color: green;"></i>
+                        <span th:text="${#authentication.principal.username} "></span>
+                    </a>
                 </li>
+
             </ul>
 
 
