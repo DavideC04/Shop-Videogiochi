@@ -13,7 +13,8 @@
 
         <div class="carousel slide p-5" id="carouselExample">
             <div class="carousel-inner">
-                <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
+                <div th:if="${game.size() > 0}" class="carousel-item"
+                     th:classappend="${status.index == 0} ? 'active' : ''"
                      th:each="g, status : ${game}">
                     <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
                     <p></p>
@@ -21,6 +22,12 @@
                         Dettagli
                     </a>
                 </div>
+
+                <div th:if="${game.size() <= 0}">
+                    <div class="alert alert-success"> Nessun Risultato</div>
+                </div>
+
+
             </div>
             <button class="carousel-control-prev opacity-100 bg-dark" data-bs-slide="prev"
                     data-bs-target="#carouselExample"
@@ -93,7 +100,10 @@
         <h1 class="text-center my-3">I PIU' VENDUTI</h1>
         <div class="carousel slide p-5" id="carouselMax">
             <div class="carousel-inner">
-                <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
+
+
+                <div th:if="${ popular != null}" class="carousel-item"
+                     th:classappend="${status.index == 0} ? 'active' : ''"
                      th:each="game,status : ${popular}"
                 >
 
@@ -104,6 +114,12 @@
                     </a>
 
                 </div>
+
+                <div th:if="${ popular == null }">
+                    <div class="alert alert-success"> Nessun Risultato</div>
+                </div>
+
+
             </div>
             <button class="carousel-control-prev opacity-100 bg-dark" data-bs-slide="prev"
                     data-bs-target="#carouselMax"
@@ -115,7 +131,6 @@
                     type="button">
                 <span class="carousel-control-next-icon"></span>
             </button>
-
         </div>
 
 
