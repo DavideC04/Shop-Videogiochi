@@ -42,10 +42,12 @@
                 </li>
             </ul>
 
-            <form class="d-flex" role="search">
-                <input aria-label="Search" class="form-control me-2" placeholder="Cerca" type="search">
+            <form class="d-flex" th:action="@{/search}" method="get">
+                <input aria-label="Search" class="form-control me-2" name="q" placeholder="cerca per nome"
+                       type="search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+
         </div>
     </div>
 </nav>

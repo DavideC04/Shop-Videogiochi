@@ -34,8 +34,13 @@ public class VideogameController {
 
     @GetMapping
     public String index(Model model, Authentication authentication) {
+
         Utility.addUser(model, authentication);
+        Utility.addAdmin(model, authentication);
+
+
         List<Videogame> videogameList = videogameRepository.findAll();
+
 
         //per recuperare videogiochi più venduti.
         List<Object[]> filteredPurchases = purchaseRepository.findPurchasesCurrMonthAndYear();
@@ -151,6 +156,16 @@ public class VideogameController {
         Utility.addAdmin(model, authentication);
         videogameRepository.deleteById(id);
         return "redirect:/storage";
+    }
+
+
+    @GetMapping("/search")
+    public String search(@RequestParam("q") String searchString, Model model, Authentication authentication) {
+        Utility.addUser(model, authentication);
+        Utility.addAdmin(model, authentication);
+        List<Videogame> filteredGamesList = videogameRepository.findByTitleContaining(searchString);
+        model.addAttribute("game", filteredGamesList);
+        return "homepage";
     }
 
     //Controller Omar  (NON TOCCARE -> IN FASE DI SVILUPPO)

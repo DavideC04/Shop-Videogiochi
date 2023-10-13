@@ -97,6 +97,8 @@ public class PurchaseController {
         if (videogameOptional.isPresent() && userOptional.isPresent()) {
             Videogame videogame = videogameOptional.get();
             User user = userOptional.get();
+
+            form.setUser(user);
             model.addAttribute("game", videogame);
             model.addAttribute("users", user);
             purchaseRepository.save(form);
