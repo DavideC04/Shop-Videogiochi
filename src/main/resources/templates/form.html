@@ -8,8 +8,7 @@
 <body>
 
 <main>
-    <nav th:replace="fragments/navbar :: navbar"></nav>
-
+    <nav th:replace="fragments/navbar :: navbar(area='area riservata')"></nav>
     <div class="container my-5 mt-lg-5 bg-light">
 
         <h1 class="mx-5 text-center"
@@ -18,15 +17,15 @@
 
         <form class="row g-3"
               id="game-form"
-              th:object="${game}"
-              th:action="${game.id != null} ? @{/edit/{id}(id=${game.id})} : @{/create}"
               method="post"
+              th:action="${game.id != null} ? @{/edit/{id}(id=${game.id})} : @{/create}"
+              th:object="${game}"
         >
 
             <div class="col-md-4">
-                <label for="image" class="form-label">URL</label>
-                <input type="text" class="form-control" id="image" required th:field="*{photo}"
-                       th:errorClass="is-invalid">
+                <label class="form-label" for="image">URL</label>
+                <input class="form-control" id="image" required th:errorClass="is-invalid" th:field="*{photo}"
+                       type="text">
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('photo')}">
                     <ul>
 
@@ -37,9 +36,9 @@
             </div>
 
             <div class="col-md-4">
-                <label for="title" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="title" required th:field="*{title}"
-                       th:errorClass="is-invalid">
+                <label class="form-label" for="title">Nome</label>
+                <input class="form-control" id="title" required th:errorClass="is-invalid" th:field="*{title}"
+                       type="text">
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}">
                     <ul>
 
@@ -49,9 +48,9 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <label for="editor" class="form-label">Editore</label>
-                <input type="text" class="form-control" id="editor" required th:field="*{editor}"
-                       th:errorClass="is-invalid">
+                <label class="form-label" for="editor">Editore</label>
+                <input class="form-control" id="editor" required th:errorClass="is-invalid" th:field="*{editor}"
+                       type="text">
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('editor')}">
                     <ul>
 
@@ -61,9 +60,9 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <label for="genre" class="form-label">Genere</label>
-                <input type="text" class="form-control" id="genre" required th:field="*{genre}"
-                       th:errorClass="is-invalid">
+                <label class="form-label" for="genre">Genere</label>
+                <input class="form-control" id="genre" required th:errorClass="is-invalid" th:field="*{genre}"
+                       type="text">
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('genre')}">
                     <ul>
 
@@ -73,10 +72,10 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <label for="description" class="form-label">Descrizione</label>
+                <label class="form-label" for="description">Descrizione</label>
                 <div class="form-floating">
-          <textarea class="form-control" id="description" required style="height: 100px" th:field="*{description}"
-                    th:errorClass="is-invalid">
+          <textarea class="form-control" id="description" required style="height: 100px" th:errorClass="is-invalid"
+                    th:field="*{description}">
           </textarea>
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('editor')}">
                         <ul>
@@ -89,21 +88,21 @@
             </div>
 
             <div class="col-md-12">
-                <label for="console" class="form-label">Console</label>
+                <label class="form-label" for="console">Console</label>
                 <div class="form-check" id="console" th:each="c : ${console}">
-                    <input class="form-check-input" type="checkbox" th:value="${c.id}"
-                           th:id="|console_${c.id}|" th:field="*{consoleList}">
+                    <input class="form-check-input" th:field="*{consoleList}" th:id="|console_${c.id}|"
+                           th:value="${c.id}" type="checkbox">
                     <label class="form-check-label" th:for="|console_${c.id}|" th:text="${c.console}"></label>
                 </div>
             </div>
 
             <div class="col-md-12">
-                <label for="price" class="form-label">Prezzo</label>
+                <label class="form-label" for="price">Prezzo</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">€</span>
                     <span class="input-group-text">0.00</span>
-                    <input type="text" class="form-control" id="price" required th:field="*{price}"
-                           th:errorClass="is-invalid"
+                    <input class="form-control" id="price" required th:errorClass="is-invalid" th:field="*{price}"
+                           type="text"
                     >
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
                         <ul>
@@ -118,7 +117,7 @@
                 <button class="btn btn-primary" type="submit">SALVA</button>
             </div>
             <div class="col-12 text-center pb-5">
-                <a class="btn btn-primary mb-3" th:href="@{/admin}">CANCELLA</a>
+                <a class="btn btn-primary mb-3" th:href="@{/storage}">CANCELLA</a>
             </div>
 
 

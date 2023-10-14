@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('profilo utente')">
+
+
+<body>
+<nav th:replace="fragments/navbar :: navbar(area='profile')"></nav>
+
+<header>
+    <div class="p-5 mb-4 bg-success bg-gradient">
+        <div class="row align-items-center justify-content-center">
+            <div class="text-center col-6 col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="img-fluid border border-dark rounded" alt="profile pic" th:src="${user.picture}">
+                    <div class="card-body">
+                        <img class="img-fluid border border-dark rounded" alt="profile pic" src="/keyboard.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<main>
+
+    <section id="portfolio" class="my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3>I miei dati:</h3>
+                            <dl>
+                                <dt>Nome</dt>
+                                <dd th:text="${user.name}"></dd>
+                                <dt>Cognome</dt>
+                                <dd th:text="${user.lastName}"></dd>
+                                <dt>Username</dt>
+                                <dd th:text="${user.userName}"></dd>
+                                <dt>Email</dt>
+                                <dd th:text="${user.email}"></dd>
+                                <dt>Password</dt>
+                                <dd>*******</dd>
+                                <dt>Data di nascita</dt>
+                                <dd th:text="${user.birthday}"></dd>
+                                <dt>Indirizzo</dt>
+                                <dd th:text="${user.address}"></dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-5">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3>I miei acquisti:</h3>
+
+
+                            <div class="carousel slide p-5" id="carouselExample">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
+                                         th:each="p,status : ${user.purchases}">
+                                        <img th:src="${p.videogame.photo}">
+                                        <dl>
+                                            <dt>Quantità</dt>
+                                            <dd th:text="${p.quantity}"></dd>
+                                            <dt>Totale</dt>
+                                            <dd th:text="|${p.getTotalPrice()}€|"></dd>
+                                            <dt>Data</dt>
+                                            <dd th:text="${p.dateTime}"></dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <button class="carousel-control-prev" data-bs-slide="prev"
+                                            data-bs-target="#carouselExample" type="button">
+                                        <span class="carousel-control-prev-icon bg-success"></span>
+                                    </button>
+                                    <button class="carousel-control-next" data-bs-slide="next"
+                                            data-bs-target="#carouselExample" type="button">
+                                        <span class="carousel-control-next-icon bg-success"></span>
+                                    </button>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<footer th:replace="fragments/footer"></footer>
+</body>
+
+
+</html>

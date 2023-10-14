@@ -3,11 +3,13 @@ package org.exercise.ShopVideogiochi.controller;
 
 import jakarta.validation.Valid;
 import org.exercise.ShopVideogiochi.model.Restock;
+import org.exercise.ShopVideogiochi.model.Utility;
 import org.exercise.ShopVideogiochi.model.Videogame;
 import org.exercise.ShopVideogiochi.repository.RestockRepository;
 import org.exercise.ShopVideogiochi.repository.VideogameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,8 +22,8 @@ import java.util.Optional;
 
 
 @Controller
-@RequestMapping("admin")
-public class AdminController {
+@RequestMapping("storage")
+public class RestockController {
 
     @Autowired
     private VideogameRepository videogameRepository;
@@ -29,11 +31,12 @@ public class AdminController {
     private RestockRepository restockRepository;
 
     @GetMapping
-    public String admin(Model model) {
+    public String index(Model model, Authentication authentication) {
+        Utility.addUser(model, authentication);
         List<Videogame> videogameList = videogameRepository.findAll();
         List<Restock> restocks = restockRepository.findAll();
         model.addAttribute("game", videogameList);
-        return "admin";
+        return "storage";
     }
 
     @GetMapping("/add/{gameId}")
@@ -43,8 +46,6 @@ public class AdminController {
             Videogame videogame = videogameOptional.get();
             Restock restock = new Restock();
             restock.setVideogame(videogame);
-            restock.setDate(LocalDate.now());
-            model.addAttribute("game", videogame);
             model.addAttribute("restock", restock);
             return "restock";
         } else {
@@ -58,8 +59,9 @@ public class AdminController {
             return "restock";
         } else {
 
+            restock.setDate(LocalDate.now());
             restockRepository.save(restock);
-            return "redirect:/admin";
+            return "redirect:/storage/add/" + restock.getVideogame().getId();
         }
     }
 

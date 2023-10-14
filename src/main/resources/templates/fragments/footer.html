@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -9,15 +9,13 @@
 </head>
 <body>
 
-<footer class="text-center text-dark py-3" style="background-color: #F8F9FA; position: fixed; bottom: 0; left: 0; right: 0;"
-        th:fragment="footer">
-    <div class="container-fluid" style="display: flex; justify-content: center; align-items: center;">
-        <p>&copy; 2023 <a class="text-dark bold fw-bold" style="text-decoration: none;" th:href="@{/}">fando<span
-                class="text-primary fw-bold">games</span></a> All
-            rights reserved.</p>
+<footer class="text-center text-dark" style="background-color: #F8F9FA;">
+    <div class="container">
+        <p class="navbar-brand fw-bold" th:href="@{/}">@2023<b> Game</b><span style="color: green">Spring</span> All
+            rights
+            reserved</p>
     </div>
 </footer>
-
 
 </body>
 </html>

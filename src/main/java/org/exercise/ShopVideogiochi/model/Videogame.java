@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.URL;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "games")
@@ -36,11 +37,10 @@ public class Videogame {
 
     @ManyToMany
     private List<Console> consoleList;
-    @NotBlank(message = "Inserisci la tipologia di console")
-    private String console;
+
     @ManyToOne
     private Restock supply;
-    @OneToMany(mappedBy = "videogame")
+    @OneToMany(mappedBy = "videogame", cascade = {CascadeType.REMOVE})
     private List<Restock> restocks;
 
     public Videogame() {
@@ -69,14 +69,6 @@ public class Videogame {
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public int getTotalQuantity() {
-        int totalQuantity = 0;
-        for (Restock r : restocks) {
-            totalQuantity += r.getQuantity();
-        }
-        return totalQuantity;
     }
 
     public String getTitle() {
@@ -127,14 +119,6 @@ public class Videogame {
         this.consoleList = consoleList;
     }
 
-    public String getConsole() {
-        return console;
-    }
-
-    public void setConsole(String console) {
-        this.console = console;
-    }
-
     public List<Restock> getRestocks() {
         return restocks;
     }
@@ -142,4 +126,35 @@ public class Videogame {
     public void setRestocks(List<Restock> restocks) {
         this.restocks = restocks;
     }
+
+    public Restock getSupply() {
+        return supply;
+    }
+
+    public void setSupply(Restock supply) {
+        this.supply = supply;
+    }
+
+    public int getTotalQuantity() {
+        int totalQuantity = 0;
+        for (Restock r : restocks) {
+            totalQuantity += r.getQuantity();
+        }
+        return totalQuantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Videogame videogame = (Videogame) o;
+        return Objects.equals(id, videogame.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+
 }

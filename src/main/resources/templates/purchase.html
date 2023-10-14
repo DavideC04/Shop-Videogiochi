@@ -5,26 +5,32 @@
     <link rel="stylesheet" th:href="@{styles.css}"/>
 </head>
 <body>
-<nav th:replace="fragments/navbar :: navbar"></nav>
+<nav th:replace="fragments/navbar :: navbar(area='profile')"></nav>
+
 <div class="container my-3">
+    <h1 class="mb-3">Completa l'acquisto!</h1>
     <form
             id="purchase-form"
-            th:action="@{/purchase/create}"
+            th:action="@{/purchase/create/{id}(id=${game.id})}"
             method="post"
             th:object="${purchase}"
     >
         <input type="hidden" th:field="*{videogame}">
-        <div class="form-group">
-            <label for="userId">Seleziona un utente per l'acquisto:</label>
-            <select class="form-control" id="userId" name="userId">
+        <input type="hidden" th:field="*{dateTime}">
+
+
+        <div class="form-group col-4">
+            <label for="selectedUser">Conferma l'indirizzo di spedizione:</label>
+            <select class="form-control" id="selectedUser" name="selectedUser">
                 <option th:each="user : ${users}" th:value="${user.id}"
-                        th:text="|${user.name} ${user.lastName}|"></option>
+                        th:text="${user.address}"></option>
             </select>
         </div>
 
-        <div class="form-group">
+
+        <div class="form-group col-2">
             <label for="quantity">Quantità:</label>
-            <input type="number" class="form-control" id="quantity" name="quantity" th:field="*{quantity}"
+            <input type="number" min="1" class="form-control " id="quantity" name="quantity" th:field="*{quantity}"
                    th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('quantity')}">
                 <ul>
@@ -33,7 +39,9 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary my-2">Acquista</button>
+
+        <button type="submit" class="btn btn-success my-2">Acquista
+        </button>
     </form>
 
 </div>

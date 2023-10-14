@@ -4,9 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 public class Admin {
@@ -14,13 +15,20 @@ public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
+
     private String lastName;
     private LocalDate birthday;
-    @NotNull
+    @NotBlank(message = "inserisci la tua email.")
     private String email;
-    @NotNull
+    @NotBlank(message = "inserisci la password.")
     private String password;
+
+
+    public Admin() {
+
+    }
 
 
     public Integer getId() {
@@ -72,16 +80,16 @@ public class Admin {
     }
 
 
-    public Admin(Integer id, String name, String lastName, LocalDate birthday, @NotNull String email, @NotNull String password) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.birthday = birthday;
-        this.email = email;
-        this.password = password;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Admin admin = (Admin) o;
+        return Objects.equals(id, admin.id);
     }
 
-    public Admin(){
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -5,21 +5,29 @@
 <body>
 
 <main>
-    <nav th:replace="fragments/navbar :: navbar"></nav>
+    <nav th:replace="fragments/navbar :: navbar(area='homepage')"></nav>
+
 
     <div class="container my-5 mt-lg-5 text-center">
         <h1 class="text-center my-3">TUTTI I GIOCHI</h1>
 
         <div class="carousel slide p-5" id="carouselExample">
             <div class="carousel-inner">
-                <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
+                <div th:if="${game.size() > 0}" class="carousel-item"
+                     th:classappend="${status.index == 0} ? 'active' : ''"
                      th:each="g, status : ${game}">
                     <img alt="game-img" class="img-fluid border border-secondary" th:src="${g.photo}">
                     <p></p>
-                    <a class="btn btn-primary" th:href="@{/show/{id}(id=${g.id})}">
+                    <a class="btn btn-success" th:href="@{/show/{id}(id=${g.id})}">
                         Dettagli
                     </a>
                 </div>
+
+                <div th:if="${game.size() <= 0}">
+                    <div class="alert alert-success"> Nessun Risultato</div>
+                </div>
+
+
             </div>
             <button class="carousel-control-prev opacity-100 bg-dark" data-bs-slide="prev"
                     data-bs-target="#carouselExample"
@@ -35,14 +43,14 @@
         </div>
 
         <th:block th:each="entry : ${consoleMap}"
-                  th:with="tagId = |carouselPlay${entry.key.id}|,imageName = ${entry.key.id == 1 || entry.key.id == 2} ? 'ps5' : (${entry.key.id == 3} ? 'switch' : 'xbox')"
+                  th:with="tagId = |carouselPlay${entry.key.id}|"
 
         >
 
             <h1 th:text="${entry.key.console}" class="text-center mt-5"></h1>
             <div class="row">
                 <div class="col-4">
-                    <img th:src="|${imageName}-left.jpeg|">
+                    <img th:src="|${entry.key.image}-left.jpeg|">
                 </div>
 
                 <div class="col-4 p-5">
@@ -59,7 +67,7 @@
                                     <img alt="game-img" class="img-fluid border border-secondary"
                                          th:src="${game.photo}">
                                     <p></p>
-                                    <a class="btn btn-primary" th:href="@{/show/{id}(id=${game.id})}">
+                                    <a class="btn btn-success" th:href="@{/show/{id}(id=${game.id})}">
                                         Dettagli
                                     </a>
                                 </div>
@@ -83,37 +91,43 @@
                 </div>
 
                 <div class="col-4">
-                    <img th:src="|${imageName}-right.jpeg|">
+                    <img th:src="|${entry.key.image}-right.jpeg|">
                 </div>
             </div>
         </th:block>
 
-        <h1 class="text-center my-3">I PIU' VENDUTI</h1>
-        <div class="carousel slide p-5" id="carouselMax">
-            <div class="carousel-inner">
-                <div class="carousel-item" th:classappend="${status.index == 0} ? 'active' : ''"
-                     th:each="p,status : ${popular}"
-                >
 
-                    <img alt="game-img" class="img-fluid border border-secondary" th:src="${p.photo}">
-                    <p></p>
-                    <a class="btn btn-primary" th:href="@{/show/{id}(id=${p.id})}">
-                        Dettagli
-                    </a>
+        <div th:if="${popular != null}">
+            <h1 class="text-center my-3">I PIU' VENDUTI</h1>
+            <div class="carousel slide p-5" id="carouselMax">
+                <div class="carousel-inner">
+
+
+                    <div class="carousel-item"
+                         th:classappend="${status.index == 0} ? 'active' : ''"
+                         th:each="game,status : ${popular}"
+                    >
+
+                        <img alt="game-img" class="img-fluid border border-secondary" th:src="${game.photo}">
+                        <p></p>
+                        <a class="btn btn-success" th:href="@{/show/{id}(id=${game.id})}">
+                            Dettagli
+                        </a>
+
+                    </div>
 
                 </div>
+                <button class="carousel-control-prev opacity-100 bg-dark" data-bs-slide="prev"
+                        data-bs-target="#carouselMax"
+                        type="button">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next opacity-100 bg-dark " data-bs-slide="next"
+                        data-bs-target="#carouselMax"
+                        type="button">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
             </div>
-            <button class="carousel-control-prev opacity-100 bg-dark" data-bs-slide="prev"
-                    data-bs-target="#carouselMax"
-                    type="button">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next opacity-100 bg-dark " data-bs-slide="next"
-                    data-bs-target="#carouselMax"
-                    type="button">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-
         </div>
 
 

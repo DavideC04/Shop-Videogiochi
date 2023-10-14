@@ -1,48 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 
 <head th:replace="fragments/head :: head('dettagli videogioco')"></head>
 
-<body class="bg-light">
-<main>
-    <nav th:replace="fragments/navbar :: navbar"></nav>
+<body class="d-flex flex-column" style="min-height: 100vh;">
 
-    <div class="container my-5 bg-light">
-        <h1 class="text-center my-5">Dettagli Videogioco</h1>
-        <div class="row">
-            <!-- Box dell'immagine -->
-            <div class="col-md-6 d-flex">
-                <div class="card w-100 h-100 bg-white border-black">
-                    <img alt="game-img" class="img-fluid h-100" th:src="${game.photo}">
-                </div>
+<nav th:replace="fragments/navbar :: navbar(area='profile')"></nav>
+
+<div class="container flex-grow-1">
+    <h1 class="text-center my-5">Dettagli Videogioco</h1>
+    <div class="row">
+        <!-- Box dell'immagine -->
+        <div class="col-md-6 d-flex">
+            <div class="card w-100 h-100 bg-white border-black">
+                <img alt="game-img" class="img-fluid h-100" th:src="${game.photo}">
             </div>
-            <!-- Box dei dettagli -->
-            <div class="col-md-6 d-flex" style="height: 450px;">
-                <div class="card w-100 border-black">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${game.title}"></h5>
-                        <p class="card-text" th:text="${game.editor}"></p>
-                        <p class="card-text" th:text="${game.genre}"></p>
-                        <p class="card-text" th:text="${game.description}"></p>
-                        <div>
-                            <ul>
-                                <li th:each="c : ${game.consoleList}" th:text="${c.console}"></li>
-                            </ul>
+        </div>
+        <!-- Box dei dettagli -->
+        <div class="col-md-6 d-flex" style="height: 450px;">
+            <div class="card w-100 border-black">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${game.title}"></h5>
+                    <div class="d-flex ">
+                        <div th:each="c : ${game.consoleList}">
+                            <span class="bold badge badge-pill secondary bg-secondary text-white mr-3 mx-1"
+                                  th:text="${c.console}"></span>
                         </div>
-                        <p class="card-text" th:text="|Prezzo: €${game.price}|"></p>
-                        <div class="d-flex align-items-center">
-                            <a class="btn btn-black border-black mx-2 " th:href="@{/purchase/create}"><i
-                                    class="fa-solid fa-cart-shopping"></i></a>
-                        </div>
+                    </div>
+                    <p class="card-text mt-3" th:text="${game.editor}"></p>
+                    <p class="card-text" th:text="${game.genre}"></p>
+                    <p class="card-text" th:text="${game.description}"></p>
+                    <p class="card-text" th:text="|Prezzo: €${game.price}|"></p>
+                </div>
+                <div class="card-footer bg-white border-top-0 mb-1">
+                    <div class="d-flex align-items-center" sec:authorize="hasAuthority('USER')">
+                        <a class="btn btn-black border-black mx-2 "
+                           th:href="@{/purchase/create/{id}(id=${game.id}) }"><i
+                                class="fa-solid fa-cart-shopping"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</div>
 
-<nav th:replace="fragments/footer"></nav>
-
+<footer th:replace="fragments/footer"></footer>
 
 </body>
 </html>

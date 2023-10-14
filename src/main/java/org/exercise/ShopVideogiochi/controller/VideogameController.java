@@ -2,21 +2,18 @@ package org.exercise.ShopVideogiochi.controller;
 
 import jakarta.validation.Valid;
 import org.exercise.ShopVideogiochi.model.Console;
-import org.exercise.ShopVideogiochi.model.Purchase;
+import org.exercise.ShopVideogiochi.model.Utility;
 import org.exercise.ShopVideogiochi.model.Videogame;
-import org.exercise.ShopVideogiochi.repository.ConsoleRepository;
-import org.exercise.ShopVideogiochi.repository.PurchaseRepository;
-import org.exercise.ShopVideogiochi.repository.RestockRepository;
-import org.exercise.ShopVideogiochi.repository.VideogameRepository;
+import org.exercise.ShopVideogiochi.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -32,42 +29,33 @@ public class VideogameController {
     private ConsoleRepository consoleRepository;
     @Autowired
     private RestockRepository restockRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping
-    public String index(Model model) {
+    public String index(Model model, Authentication authentication) {
+
+        Utility.addUser(model, authentication);
+        Utility.addAdmin(model, authentication);
+
+
         List<Videogame> videogameList = videogameRepository.findAll();
 
-        //per recuperare videogiochi più venduti
-        List<Purchase> purchaseList = purchaseRepository.findAll();
-        Map<Videogame, Integer> popularGamesMap = new HashMap<>();
+
+        //per recuperare videogiochi più venduti.
+        List<Object[]> filteredPurchases = purchaseRepository.findPurchasesCurrMonthAndYear();
         Set<Videogame> popularGames = new HashSet<>();
 
+        for (Object[] p : filteredPurchases) {
 
-        for (Purchase p : purchaseList) {
-
-            LocalDateTime currDateTime = LocalDateTime.now();
-            LocalDateTime purchaseDateTime = p.getDateTime();
-
-
-            if (purchaseDateTime.getMonth().equals(currDateTime.getMonth()) && purchaseDateTime.getYear() == currDateTime.getYear()) {
-                Videogame game = p.getVideogame();
-
-                if (popularGamesMap.containsKey(game)) {
-                    popularGamesMap.put(game, popularGamesMap.get(game) + 1);
-                } else {
-                    popularGamesMap.put(game, 1);
-                }
-
+            Integer gameId = (Integer) p[0];
+            Long purchases = (Long) p[1];
+            Videogame game = videogameRepository.findById(gameId.intValue()).orElse(null);
+            if (purchases > 3) {
+                popularGames.add(game);
             }
         }
 
-        for (Map.Entry<Videogame, Integer> entry : popularGamesMap.entrySet()) {
-            if (entry.getValue() > 3) {
-                popularGames.add(entry.getKey());
-            }
-        }
-        System.out.println(popularGamesMap);
-        System.out.println(popularGames);
 
         //per dividere in base alla console
         Map<Console, List<Videogame>> consoleMap = new HashMap<>();
@@ -84,7 +72,6 @@ public class VideogameController {
 
         }
 
-
         model.addAttribute("popular", popularGames);
         model.addAttribute("consoleMap", consoleMap);
         model.addAttribute("game", videogameList);
@@ -94,7 +81,9 @@ public class VideogameController {
 
     // metodo dei dettagli
     @GetMapping("/show/{id}")
-    public String show(@PathVariable("id") Integer id, Model model) {
+    public String show(@PathVariable("id") Integer id, Model model, Authentication authentication) {
+        Utility.addUser(model, authentication);
+        Utility.addAdmin(model, authentication);
         Optional<Videogame> videogameOptional = videogameRepository.findById(id);
         if (videogameOptional.isPresent()) {
             Videogame videogameDB = videogameOptional.get();
@@ -108,7 +97,8 @@ public class VideogameController {
 
     // metodo create
     @GetMapping("/create")
-    public String create(Model model) {
+    public String create(Model model, Authentication authentication) {
+        Utility.addAdmin(model, authentication);
 
         List<Console> consoleList = consoleRepository.findAll();
         model.addAttribute("console", consoleList);
@@ -118,7 +108,8 @@ public class VideogameController {
     }
 
     @PostMapping("/create")
-    public String doCreate(Model model, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
+    public String doCreate(Model model, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult, Authentication authentication) {
+        Utility.addAdmin(model, authentication);
 
 
         // if bindingResult
@@ -128,12 +119,13 @@ public class VideogameController {
         }
         videogameRepository.save(gameForm);
         // redirect
-        return "redirect:/";
+        return "redirect:/storage";
     }
 
     // metodo edit
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Integer id, Model model) {
+    public String edit(@PathVariable("id") Integer id, Model model, Authentication authentication) {
+        Utility.addAdmin(model, authentication);
         Optional<Videogame> result = videogameRepository.findById(id);
         if (result.isPresent()) {
             model.addAttribute("console", consoleRepository.findAll());
@@ -146,22 +138,34 @@ public class VideogameController {
     }
 
     @PostMapping("/edit/{id}")
-    public String doEdit(Model model, @PathVariable("id") Integer id, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult) {
+    public String doEdit(Model model, @PathVariable("id") Integer id, @Valid @ModelAttribute("game") Videogame gameForm, BindingResult bindingResult, Authentication authentication) {
         if (bindingResult.hasErrors()) {
+            Utility.addAdmin(model, authentication);
 
             model.addAttribute("console", consoleRepository.findAll());
             return "form";
         }
         videogameRepository.save(gameForm);
-        return "redirect:/admin";
+        return "redirect:/storage";
     }
 
 
     // metodo delete
     @PostMapping("delete/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    public String delete(@PathVariable("id") Integer id, Model model, Authentication authentication) {
+        Utility.addAdmin(model, authentication);
         videogameRepository.deleteById(id);
-        return "redirect:/admin";
+        return "redirect:/storage";
+    }
+
+
+    @GetMapping("/search")
+    public String search(@RequestParam("q") String searchString, Model model, Authentication authentication) {
+        Utility.addUser(model, authentication);
+        Utility.addAdmin(model, authentication);
+        List<Videogame> filteredGamesList = videogameRepository.findByTitleContaining(searchString);
+        model.addAttribute("game", filteredGamesList);
+        return "homepage";
     }
 
     //Controller Omar  (NON TOCCARE -> IN FASE DI SVILUPPO)

@@ -3,68 +3,94 @@
 <head th:replace="fragments/head :: head('Admin')"></head>
 
 <body>
-<nav th:replace="fragments/navbar"></nav>
-<div class="container mt-5">
-    <h1 th:text="|Assortimento: ${game.title}|"></h1>
-    <form
-            id="restock-form"
-            th:action="@{/admin/add/{gameId}(gameId=${game.id})}"
-            th:object="${restock}"
-            method="post"
-    >
-        <input type="hidden" th:field="*{videogame}" />
+<nav th:replace="fragments/navbar :: navbar(area='area riservata')"></nav>
 
-        <div class="row g-3">
-            <div class="col-md-4">
-                <label for="date" class="form-label fw-bold">Data</label>
-                <input type="date" class="form-control" id="date" name="date" th:field="*{date}">
-            </div>
-            <div class="col-md-4">
-                <label for="supplier" class="form-label fw-bold">Fornitore</label>
-                <input type="text" class="form-control" id="supplier" name="supplier" th:field="*{supplier}">
-            </div>
-            <div class="col-md-4">
-                <label for="price" class="form-label fw-bold">Prezzo</label>
-                <input type="number" class="form-control" id="price" step="0.01" th:field="*{price}">
-            </div>
-            <div class="col-md-4">
-                <label for="quantity" class="form-label fw-bold">Quantità</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" th:field="*{quantity}">
-            </div>
-        </div>
-        <div class="col-12 my-2">
-            <button type="submit" class="btn btn-primary">Acquista
-            </button>
-        </div>
+<div class="container my-5 mt-lg-5 bg-light">
+    <div class="container mt-5">
+        <h1 th:text="|Assortimento: ${restock.videogame.title}|"></h1>
+        <form
+                id="restock-form"
+                method="post"
+                th:action="@{/storage/add/{gameId}(gameId=${restock.videogame.id})}"
+                th:object="${restock}"
+        >
+            <input th:field="*{videogame}" type="hidden"/>
 
-    </form>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold" for="supplier">Fornitore</label>
+                    <input class="form-control" id="supplier" name="supplier" required th:errorClass="is-invalid"
+                           th:field="*{supplier}" type="text">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('supplier')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('supplier')}" th:text="${err}">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label fw-bold" for="price">Prezzo</label>
+                    <input class="form-control" id="price" required step="0.01" th:errorClass="is-invalid"
+                           th:field="*{price}"
+                           type="number">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('price')}" th:text="${err}">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label fw-bold" for="quantity">Quantità</label>
+                    <input class="form-control" id="quantity" name="quantity" th:errorClass="is-invalid" th:field="*{quantity}"
+                           type="number">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('quantity')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('quantity')}" th:text="${err}">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 my-2 text-center">
+                <button class="btn btn-success" type="submit">Acquista
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="container mt-5 pb-3">
+        <table class="table">
+            <thead>
+            <h1>Cronologia assortimenti</h1>
+            <tr>
+                <th>Data</th>
+                <th>Fornitore</th>
+                <th>Prezzo</th>
+                <th>Quantità</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="r : ${restock.videogame.restocks}">
+                <td th:text="${r.date}"></td>
+                <td th:text="${r.supplier}"></td>
+                <td th:text="${r.price}"></td>
+                <td th:text="${r.quantity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 
 </div>
 
-<div class="container mt-5">
-    <table class="table">
-        <thead>
-        <h1>Cronologia assortimenti</h1>
-        <tr>
-            <th>Data</th>
-            <th>Fornitore</th>
-            <th>Prezzo</th>
-            <th>Quantità</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="r : ${game.restocks}">
-            <td th:text="${r.date}"></td>
-            <td th:text="${r.supplier}"></td>
-            <td th:text="${r.price}"></td>
-            <td th:text="${r.quantity}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 
-
-<footer th:replace="fragments/footer">
+<footer th:replace="fragments/footer"></footer>
 
 </body>
 </html>
