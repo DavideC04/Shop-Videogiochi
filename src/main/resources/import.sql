@@ -150,123 +150,72 @@ INSERT INTO user_roles (user_id, roles_id) VALUES(4,2);
 INSERT INTO user_roles (user_id, roles_id) VALUES(5,2);
 INSERT INTO user_roles (user_id, roles_id) VALUES(6,2);
 
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-02 12:20:12', 8, 1, 41);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-01 11:12:10', 3, 1, 12);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-03 21:03:05', 10, 1, 4);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-05 14:09:09', 6, 1, 39);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-07 07:24:01', 2, 1, 5);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-06 19:06:04', 15, 1, 24);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-03 20:03:05', 8, 1, 30);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-05 19:09:09', 30, 1, 7);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2022-09-30 14:10:10', 9, 1, 21);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2021-01-01 15:05:20', 4, 1, 15);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-02 12:20:28', 8, 1, 9);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-01 11:12:28', 3, 1, 30);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-03 21:07:05', 10, 1, 16);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-05 14:05:09', 6, 1, 24);
-
-
-
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 12:20:12", 8, 2, 18);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 11:12:10", 9, 2, 27);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 22:03:05", 25, 2, 4);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 14:09:09", 11, 2, 10);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-07 07:24:01", 2, 2, 5);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-06 19:06:04", 19, 2, 6);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 20:03:05", 8, 2, 30);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-04 11:09:12", 33, 2, 7);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2018-07-31 18:12:10", 11, 2, 19);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2016-02-05 19:05:20", 7, 2, 33);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 12:20:11", 8, 2, 21);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 11:12:08", 9, 2, 29);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 22:03:06", 25, 2, 2);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 14:09:07", 11, 2, 18);
-
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 05:20:12", 20, 3, 18);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 06:12:10", 9, 3, 27);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 20:03:05", 3, 3, 17);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 14:08:09", 11, 3, 7);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-07 06:24:01", 2, 3, 5);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-06 20:06:04", 19, 3, 6);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 16:03:09", 12, 3, 30);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-04 12:09:12", 33, 3, 38);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2012-05-28 15:12:10", 10, 3, 1);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2011-01-04 21:05:20", 7, 3, 22);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 05:20:15", 20, 3, 19);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 06:12:52", 9, 3, 31);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 20:03:57", 3, 3, 15);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 14:08:59", 11, 3, 14);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-02 12:20:12', 5, 6, 40);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-01 11:12:10', 2, 6, 1);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-03 21:03:05', 3, 6, 16);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-05 14:09:09', 1, 6, 39);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-07 07:24:01', 1, 6, 36);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-06 19:06:04', 5, 6, 21);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-03 20:03:05', 4, 6, 10);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-05 19:09:09', 2, 6, 4);
 
 
 
 
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:20:12", 20, 4, 18);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 05:12:10", 9, 4, 11);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 12:20:12", 1, 2, 2);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 22:03:05", 3, 2, 18);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 14:09:10", 1, 2, 16);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 14:09:11", 2, 2, 10);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ('2023-10-05 14:09:12', 1, 2, 39);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 09:22:12", 2, 2, 7);
+
+
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 05:20:12", 3, 3, 18);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 06:12:10", 2, 3, 24);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 14:08:09", 11, 3, 42);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 06:12:52", 1, 3, 39);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 20:03:57", 2, 3, 10);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 14:08:59", 1, 3, 16);
+
+
+
+
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:20:12", 1, 4, 18);
 INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 22:03:05", 3, 4, 24);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 11:08:12", 11, 4, 36);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-07 02:24:01", 2, 4, 19);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-06 10:06:04", 19, 4, 6);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 16:08:09", 2, 4, 30);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-04 12:19:12", 35, 4, 40);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2022-08-21 14:12:10", 10, 4, 7);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2012-06-22 20:05:20", 7, 4, 4);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:20:01", 20, 4, 38);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 05:12:12", 9, 4, 42);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 22:03:08", 3, 4, 41);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 11:08:18", 11, 4, 1);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 11:08:12", 1, 4, 36);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-07 02:24:01", 20, 4, 9);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-06 10:06:04", 22, 4, 16);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-07 02:24:01", 5, 4, 27);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-06 10:06:04", 5, 4, 40);
 
 
 
 
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:22:12", 20, 5, 35);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 06:12:10", 9, 5, 13);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 22:08:05", 6, 5, 11);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 11:07:12", 19, 5, 42);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-07 03:24:01", 2, 5, 19);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-06 13:06:08", 42, 5, 21);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 17:08:09", 9, 5, 26);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-04 12:42:12", 3, 5, 27);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2015-05-22 14:55:10", 10, 5, 28);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2014-08-02 20:05:20", 7, 5, 29);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:22:11", 20, 5, 7);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 06:12:19", 9, 5, 37);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 22:08:25", 6, 5, 4);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 11:07:24", 19, 5, 38);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:22:12", 2, 5, 7);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 06:12:10", 1, 5, 15);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 22:08:05", 1, 5, 11);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 11:07:12", 1, 5, 16);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-07 03:24:01", 20, 5, 9);
+INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-07 05:24:01", 5, 5, 21);
 
 
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:20:12", 20, 6, 18);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 05:12:10", 9, 6, 11);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 22:03:05", 3, 6, 24);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-05 11:08:12", 11, 6, 36);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-07 02:24:01", 2, 6, 37);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-06 10:06:04", 19, 6, 12);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-03 16:08:09", 2, 6, 13);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-04 12:19:12", 35, 6, 15);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2019-01-01 14:12:10", 10, 6, 2);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2010-02-18 20:05:20", 7, 6, 1);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:20:11", 20, 6, 35);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 05:12:44", 9, 6, 6);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-02 08:20:39", 20, 6, 21);
-INSERT INTO purchase (date_time, quantity, user_id, videogame_id) VALUES ("2023-10-01 05:12:58", 9, 6, 5);
 
-
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-01", 2500.00, 50, "Riccardo Tommasi", 1);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-07-01", 2000.00, 40, "Riccardo Tommasi", 5);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-06-01", 1850.00, 37, "Riccardo Tommasi", 16);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-05-01", 1499.50, 5, "Riccardo Tommasi", 39);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-04-01", 1999.60, 4, "Riccardo Tommasi", 36);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-03-01", 1400.00, 28, "Riccardo Tommasi", 21);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-02-01", 1401.57, 43, "Riccardo Tommasi", 10);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-01-01", 1978.50, 66, "Riccardo Tommasi", 4);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-09-01", 81.98, 2, "Riccardo Tommasi", 2);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-11", 40.99, 1, "Riccardo Tommasi", 11);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-01", 2999.00, 50, "Riccardo Tommasi", 1);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-07-01", 2199.00, 40, "Riccardo Tommasi", 5);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-05-01", 160.00, 5, "Riccardo Tommasi", 39);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-04-01", 183.00, 4, "Riccardo Tommasi", 36);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-03-01", 1554.00, 28, "Riccardo Tommasi", 21);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-02-01", 589.00, 43, "Riccardo Tommasi", 10);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-01-01", 3629.00, 66, "Riccardo Tommasi", 4);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-09-01", 81.00, 2, "Riccardo Tommasi", 2);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-11", 40.00, 1, "Riccardo Tommasi", 11);
 INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-21", 499.00, 10, "Riccardo Tommasi", 18);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-05", 269.10, 9, "Riccardo Tommasi", 14);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-18", 659.78, 22, "Riccardo Tommasi", 24);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-05", 469.00, 9, "Riccardo Tommasi", 14);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-18", 1495.00, 22, "Riccardo Tommasi", 24);
 INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-09-22", 4000.00, 80, "Riccardo Tommasi", 42);
 INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-05-20", 4750.00, 95, "Riccardo Tommasi", 9);
 INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-02-14", 4250.00, 100, "Riccardo Tommasi", 16);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-07-12", 147.00, 3, "Riccardo Tommasi", 15);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-10-04", 875.00, 5, "Riccardo Tommasi", 7);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-10-09", 1125.00, 25, "Riccardo Tommasi", 27);
-INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-30", 1249.58, 42, "Riccardo Tommasi", 40);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-07-12", 85.00, 3, "Riccardo Tommasi", 15);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-10-04", 299.00, 5, "Riccardo Tommasi", 7);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-10-09", 1499.00, 25, "Riccardo Tommasi", 27);
+INSERT INTO restock(date, price, quantity, supplier, videogame_id ) VALUES ("2023-08-30", 2555.00, 42, "Riccardo Tommasi", 40);

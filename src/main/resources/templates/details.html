@@ -31,9 +31,15 @@
                     <p class="card-text" th:text="${game.genre}"></p>
                     <p class="card-text" th:text="${game.description}"></p>
                     <p class="card-text" th:text="|Prezzo: €${game.price}|"></p>
+                    <div th:if="${game.totalQuantity} == 0"
+                         sec:authorize="hasAuthority('USER')"
+                    >
+                        <p class="badge bg-danger text-light card-text">Esaurito.</p>
+                    </div>
                 </div>
                 <div class="card-footer bg-white border-top-0 mb-1">
-                    <div class="d-flex align-items-center" sec:authorize="hasAuthority('USER')">
+                    <div th:if="${game.totalQuantity} > 0" class="d-flex align-items-center"
+                         sec:authorize="hasAuthority('USER')">
                         <a class="btn btn-black border-black mx-2 "
                            th:href="@{/purchase/create/{id}(id=${game.id}) }"><i
                                 class="fa-solid fa-cart-shopping"></i></a>

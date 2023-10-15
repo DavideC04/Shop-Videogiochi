@@ -50,15 +50,21 @@ public class PurchaseController {
     @GetMapping("/create/{id}")
     public String create(@PathVariable("id") Integer id, Model model, Authentication authentication) {
         Utility.addUser(model, authentication);
+
         Optional<Videogame> videogameOptional = videogameRepository.findById(id);
         Optional<User> userOptional = userRepository.findByUserName(authentication.getName());
+
         if (videogameOptional.isPresent() && userOptional.isPresent()) {
+
             Videogame videogame = videogameOptional.get();
+
             User userList = userOptional.get();
             Purchase purchase = new Purchase();
             purchase.setQuantity(1);
             purchase.setVideogame(videogame);
             purchase.setDateTime(LocalDateTime.now());
+            System.out.println(videogame.getTotalQuantity());
+
 
             model.addAttribute("purchase", purchase);
             model.addAttribute("users", userList);
@@ -76,7 +82,10 @@ public class PurchaseController {
     @PostMapping("/create/{gameId}")
     public String doCreate(@PathVariable("gameId") Integer id, Model model, @Valid @ModelAttribute("purchase") Purchase form,
                            BindingResult bindingResult, @RequestParam("selectedUser") Integer selectedUserId, Authentication authentication) {
+
         Utility.addUser(model, authentication);
+
+
         if (bindingResult.hasErrors()) {
 
             Videogame videogame = videogameRepository.findById(id).orElse(null);
@@ -99,6 +108,7 @@ public class PurchaseController {
             User user = userOptional.get();
 
             form.setUser(user);
+
             model.addAttribute("game", videogame);
             model.addAttribute("users", user);
             purchaseRepository.save(form);

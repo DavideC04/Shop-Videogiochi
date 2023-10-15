@@ -31,6 +31,7 @@ public class Restock {
     @ManyToOne
     private Videogame videogame;
 
+
     public Restock() {
 
     }

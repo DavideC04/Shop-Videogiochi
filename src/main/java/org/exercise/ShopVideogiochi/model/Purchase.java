@@ -1,7 +1,6 @@
 package org.exercise.ShopVideogiochi.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
@@ -24,7 +23,6 @@ public class Purchase {
 
     @NotNull(message = "inserisci una cifra tra 1-100.")
     @Min(1)
-    @Max(100)
     private Integer quantity;
 
     @ManyToOne

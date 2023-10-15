@@ -28,15 +28,23 @@
         </div>
 
 
-        <div class="form-group col-2">
+        <div class="form-group col-6">
             <label for="quantity">Quantità:</label>
-            <input type="number" min="1" class="form-control " id="quantity" name="quantity" th:field="*{quantity}"
+            <input min="1" th:max="${game.totalQuantity}"
+                   type="number" class="form-control " id="quantity" name="quantity"
+                   th:field="*{quantity}"
                    th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('quantity')}">
                 <ul>
                     <li th:each="err : ${#fields.errors('quantity')}" th:text="${err}"></li>
                 </ul>
             </div>
+        </div>
+
+
+        <div class="form-group col-6">
+            <label for="totalQuantity">Disponibilità:</label>
+            <input type="text" class="form-control" id="totalQuantity" th:value="${game.totalQuantity}" readonly>
         </div>
 
 

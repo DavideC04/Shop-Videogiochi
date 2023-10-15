@@ -25,6 +25,7 @@ public class Videogame {
     @NotBlank(message = "L'editore non può essere vuoto!")
     private String editor;
     private String description;
+
     @NotNull(message = "Il prezzo non può essere inferiore o uguale a 0!")
     @Min(1)
     private BigDecimal price;
@@ -32,18 +33,21 @@ public class Videogame {
     @NotBlank(message = "Inserisci il genere")
     private String genre;
 
+
     @OneToMany(mappedBy = "videogame", cascade = {CascadeType.REMOVE})
     private List<Purchase> purchases;
 
     @ManyToMany
     private List<Console> consoleList;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Restock supply;
+
     @OneToMany(mappedBy = "videogame", cascade = {CascadeType.REMOVE})
     private List<Restock> restocks;
 
     public Videogame() {
+
 
     }
 
@@ -137,11 +141,24 @@ public class Videogame {
 
     public int getTotalQuantity() {
         int totalQuantity = 0;
+
         for (Restock r : restocks) {
             totalQuantity += r.getQuantity();
         }
+
+        int totalPurchasedQuantity = 0;
+
+        for (Purchase p : purchases) {
+
+            totalPurchasedQuantity += p.getQuantity();
+        }
+
+
+        totalQuantity -= totalPurchasedQuantity;
+
         return totalQuantity;
     }
+
 
     @Override
     public boolean equals(Object o) {

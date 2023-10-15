@@ -51,7 +51,7 @@ public class VideogameController {
             Integer gameId = (Integer) p[0];
             Long purchases = (Long) p[1];
             Videogame game = videogameRepository.findById(gameId.intValue()).orElse(null);
-            if (purchases > 3) {
+            if (purchases > 2) {
                 popularGames.add(game);
             }
         }
